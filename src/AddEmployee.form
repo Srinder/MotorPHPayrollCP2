@@ -35,13 +35,11 @@
                                   <Component id="jLblPHILHEALTH" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLblPAGIBIG" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLblEmpNum" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jLblPosition" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLblStatus" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLblPhoneNumber" alignment="0" pref="108" max="32767" attributes="0"/>
-                                      <Component id="jLblFirstName" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLblLastName" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLblPosition" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLblStatus" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLblPhoneNumber" alignment="0" pref="108" max="32767" attributes="0"/>
+                                  <Component id="jLblFirstName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLblLastName" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLblImmSup" alignment="0" pref="132" max="32767" attributes="0"/>
                                   <Component id="jLabelAddEmp" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
                               </Group>
@@ -265,11 +263,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Submit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSubmitActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonCancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -12,6 +12,7 @@ import java.io.InputStream;
  * @author singh
  */
 public class EmployeeTable extends javax.swing.JFrame {
+    AddEmployee addemp = new AddEmployee ();
 
     /**
      * Creates new form EmployeeTable
@@ -82,6 +83,11 @@ try {
         jButtonDelete.setText("Delete");
 
         jButtonAdd.setText("Add New Employee");
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddActionPerformed(evt);
+            }
+        });
 
         jButtonExit.setText("Exit");
         jButtonExit.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +148,11 @@ try {
         // TODO add your handling code here:
         dispose ();
     }//GEN-LAST:event_jButtonExitActionPerformed
+
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+        // TODO add your handling code here:
+        addemp.show();
+    }//GEN-LAST:event_jButtonAddActionPerformed
 
     /**
      * @param args the command line arguments

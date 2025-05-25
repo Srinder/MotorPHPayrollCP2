@@ -7,6 +7,11 @@
  *
  * @author singh
  */
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
+
 public class MainMenu extends javax.swing.JFrame {
     EmployeeTable femptable = new EmployeeTable ();
     Payslip fpayslip = new Payslip ();
@@ -54,6 +59,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButtonTimeout.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButtonTimeout.setText("Time OUT");
         jButtonTimeout.setPreferredSize(new java.awt.Dimension(80, 25));
+        jButtonTimeout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTimeoutActionPerformed(evt);
+            }
+        });
 
         jButtonEmployee.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonEmployee.setText("Employee Information");
@@ -129,6 +139,15 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButtonTimeinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTimeinActionPerformed
         // TODO add your handling code here:
+        
+        //get current date and time 
+        Date now = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String timeIn = sdf.format(now);
+    
+    // Display in a dialog or label
+    JOptionPane.showMessageDialog(this, "Time In Recorded: " + timeIn);
+        
     }//GEN-LAST:event_jButtonTimeinActionPerformed
 
     private void jButtonEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmployeeActionPerformed
@@ -147,6 +166,16 @@ public class MainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose ();
     }//GEN-LAST:event_jButtonExit2ActionPerformed
+
+    private void jButtonTimeoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTimeoutActionPerformed
+        // TODO add your handling code here:
+        Date now = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String timeOut = sdf.format(now);
+    
+    // Display in a dialog or label
+    JOptionPane.showMessageDialog(this, "Time Out Recorded: " + timeOut);
+    }//GEN-LAST:event_jButtonTimeoutActionPerformed
 
     /**
      * @param args the command line arguments

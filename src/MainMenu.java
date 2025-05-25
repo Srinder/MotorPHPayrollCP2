@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 public class MainMenu extends javax.swing.JFrame {
     EmployeeTable femptable = new EmployeeTable ();
     Payslip fpayslip = new Payslip ();
+    Attendance fattendance = new Attendance ();
     
 
     /**
@@ -131,6 +132,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButtonAttendance.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonAttendance.setText("Attendance");
         jButtonAttendance.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonAttendance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAttendanceActionPerformed(evt);
+            }
+        });
 
         jButtonExit2.setText("Exit");
         jButtonExit2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -233,6 +239,11 @@ public class MainMenu extends javax.swing.JFrame {
     // Display in a dialog or label
     JOptionPane.showMessageDialog(this, "Time Out Recorded: " + timeOut);
     }//GEN-LAST:event_jButtonTimeoutActionPerformed
+
+    private void jButtonAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAttendanceActionPerformed
+        // TODO add your handling code here:
+        fattendance.show();
+    }//GEN-LAST:event_jButtonAttendanceActionPerformed
 
     /**
      * @param args the command line arguments

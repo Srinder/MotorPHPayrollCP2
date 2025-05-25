@@ -105,7 +105,7 @@ public class AddEmployee extends javax.swing.JFrame {
         jLblPersonal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLblPersonal.setText("Personal Information");
 
-        jButtonCancel.setText("Cancel");
+        jButtonCancel.setText("Close");
         jButtonCancel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -8,6 +8,7 @@
  * @author singh
  */
 public class LoginScreen1 extends javax.swing.JFrame {
+    MainMenu fmain = new MainMenu ();
 
     /**
      * Creates new form LoginScreen1
@@ -93,6 +94,9 @@ public class LoginScreen1 extends javax.swing.JFrame {
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // TODO add your handling code here:
+        fmain.show();
+       
+                
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     /**

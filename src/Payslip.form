@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1000, 600]"/>
+    </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1000, 600]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="formFocusLost"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -24,31 +33,86 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLblPayrollName" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLblPayrollEmpNum" alignment="0" pref="169" max="32767" attributes="0"/>
-                          <Component id="jLblPayrollSSS" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLblPayrollPhilhealth" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLblPayrollPagibig" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLblPayrollTIN" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="550" max="32767" attributes="0"/>
-                      <Component id="jButtonClose" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jLblPayrollEmpNum" min="-2" pref="190" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel3" min="-2" pref="169" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jDateChooserSelectDate" min="-2" pref="162" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                              <Component id="jBtnCalculate" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLblPayrollPagibig1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jLabel9" min="-2" pref="145" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="520" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel1" min="-2" pref="70" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel1" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jBtnCalculate" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
+                      <Component id="jBtnCalculate1" min="-2" pref="55" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLblPayrollPagibig" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabel4" min="-2" pref="145" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="2384" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jPanel1" min="-2" pref="307" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLblPayrollName" min="-2" pref="169" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+                              <Component id="jLblPayrollName61" min="-2" pref="107" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="jPanel3" min="-2" pref="291" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="jLblPayrollName47" min="-2" pref="107" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="1343" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLblPayrollTIN" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jButtonClose" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLblPayrollSSS" min="-2" pref="169" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -56,32 +120,63 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jBtnCalculate" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLblPayrollName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonClose" alignment="3" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLblPayrollEmpNum" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLblPayrollPagibig" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jBtnCalculate1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBtnCalculate" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                      <Component id="jLblPayrollEmpNum" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLblPayrollSSS" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLblPayrollPhilhealth" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLblPayrollPagibig" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLblPayrollTIN" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jDateChooserSelectDate" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLblPayrollPagibig1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jButtonClose" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="jLblPayrollTIN" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLblPayrollSSS" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLblPayrollName47" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLblPayrollName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLblPayrollName61" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jPanel2" alignment="0" min="-2" pref="375" max="-2" attributes="0"/>
+                                  <Component id="jPanel1" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="jPanel3" alignment="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="362" max="32767" attributes="0"/>
+              <EmptySpace pref="179" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,12 +184,15 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLblPayrollName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Name:"/>
+        <Property name="text" type="java.lang.String" value="SUMMARY:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLblPayrollEmpNum">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Employee Number:"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="15" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="ELECTRONIC PAYSLIP OF:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLblPayrollSSS">
@@ -102,22 +200,18 @@
         <Property name="text" type="java.lang.String" value="SSS:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLblPayrollPhilhealth">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Philhealth:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLblPayrollPagibig">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pagibig:"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="For Paydate of:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLblPayrollTIN">
       <Properties>
         <Property name="text" type="java.lang.String" value="TIN:"/>
       </Properties>
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserSelectDate">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -126,6 +220,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jBtnCalculate">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="66" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Calculate"/>
       </Properties>
     </Component>
@@ -136,6 +233,696 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCloseActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLblPayrollName1" min="-2" pref="169" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLblPayrollName3" min="-2" pref="102" max="-2" attributes="0"/>
+                              <Component id="jLblPayrollName2" min="-2" pref="102" max="-2" attributes="0"/>
+                              <Component id="jLblPayrollName12" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLblPayrollName11" min="-2" pref="169" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jLblPayrollName43" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName44" alignment="1" pref="50" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName45" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName46" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName48" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName49" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName50" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName51" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jLblPayrollName41" alignment="0" pref="50" max="32767" attributes="0"/>
+                                          <Component id="jLblPayrollName40" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLblPayrollName8" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLblPayrollName7" min="-2" pref="117" max="-2" attributes="0"/>
+                              <Component id="jLblPayrollName9" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLblPayrollName6" min="-2" pref="169" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLblPayrollName10" min="-2" pref="169" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLblPayrollName14" min="-2" pref="104" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLblPayrollName22" min="-2" pref="134" max="-2" attributes="0"/>
+                                  <Component id="jLblPayrollName21" min="-2" pref="134" max="-2" attributes="0"/>
+                                  <Component id="jLblPayrollName23" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLblPayrollName1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName40" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName41" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName12" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName43" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="jLblPayrollName6" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName44" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName45" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName9" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName46" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="jLblPayrollName10" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName21" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName48" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName22" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName49" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName23" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName50" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName14" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName51" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
+                  <Component id="jLblPayrollName11" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="3"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Earnings"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hours worked"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hourly Rate"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName6">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="3"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Benefits"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Phone Allowance "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Clothing Allowance"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Rice Allowance"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName10">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="3"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Other Deductions"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName11">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName12">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Overtime "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Withholding  Tax"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName40">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="85"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName41">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="318.45"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName43">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName21">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="SSS Premium"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName22">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="PhilHealth"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName23">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pag-Ibig"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName44">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="1000"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName45">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="500"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName46">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="750"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName48">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="1125"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName49">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="900"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName50">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="100"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName51">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="5,245"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="jLblPayrollPagibig1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cutoff:"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLblPayrollName20" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
+                              <Component id="jLblPayrollName32" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel7" max="32767" attributes="0"/>
+                              <Component id="jLabel8" pref="73" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jLblPayrollName17" min="-2" pref="169" max="-2" attributes="0"/>
+                              <Component id="jLblPayrollName19" min="-2" pref="169" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel6" max="32767" attributes="0"/>
+                              <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel2" alignment="0" pref="73" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="jLblPayrollName26" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jLblPayrollName17" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLblPayrollName19" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel5" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLblPayrollName26" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                              <Component id="jLabel6" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLblPayrollName20" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel7" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLblPayrollName32" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jLabel2" min="-2" pref="16" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="353" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName17">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Gross Income"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName19">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Benefits"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName20">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Other Adjustment"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName26">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Deductions"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName32">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="NET PAY"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="27,068.25"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="2250"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel6">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="7370"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel8">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="21,948.25"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="jLblPayrollName47">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EMPLOYEE DATA:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBtnCalculate1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="66" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Exit"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnCalculate1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel3">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLblPayrollName57" min="-2" pref="91" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLblPayrollName36" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
+                              <Component id="jLblPayrollName39" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jLblPayrollName38" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName37" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName35" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName28" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName34" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="jLblPayrollName42" min="-2" pref="169" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jLblPayrollName58" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName53" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName52" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPayrollName59" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLblPayrollName60" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jLblPayrollName55" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLblPayrollName54" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLblPayrollName56" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName34" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName52" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName28" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName53" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName57" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName58" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName35" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName54" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName36" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName55" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName37" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName56" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblPayrollName38" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLblPayrollName59" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="jLblPayrollName39" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jLblPayrollName60" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="429" max="-2" attributes="0"/>
+                  <Component id="jLblPayrollName42" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName28">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Employee Position"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName34">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Employee ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName35">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="SSS Number"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName36">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="TIN"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName37">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="PhilHealth Number"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName38">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pag-Ibig Number"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName39">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Bank Account Number"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName42">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName52">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="10015"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName53">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="Accounting"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName54">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="XX-XXXX374-1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName55">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="XXX-XXX-XX1-000"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName56">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="XXXXXXXX0059"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName57">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Status"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName58">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="Regular"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName59">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="XXXXXXXX7853"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLblPayrollName60">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="1234567891234"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="16" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Romualdez, Fredrick "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="December 31, 2023"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="12/1/23 to 12/15/23"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblPayrollName61">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EMPLOYEE DATA:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

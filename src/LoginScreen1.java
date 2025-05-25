@@ -116,8 +116,8 @@ public class LoginScreen1 extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Invalid username or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
         
         //Clear the textfields
-        jTextFieldUsername.setText(",");
-        jTextFieldPassword.setText(",");
+        jTextFieldUsername.setText("");
+        jTextFieldPassword.setText("");
         }         
     }//GEN-LAST:event_jButtonLoginActionPerformed
 

@@ -12,6 +12,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 
+
 public class MainMenu extends javax.swing.JFrame {
     EmployeeTable femptable = new EmployeeTable ();
     Payslip fpayslip = new Payslip ();

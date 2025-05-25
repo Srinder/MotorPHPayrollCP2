@@ -1,7 +1,12 @@
+import javax.swing.JFrame;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.InputStream;
+import java.io.FileReader;
+import java.util.Vector;
+import java.util.Arrays;
+import com.opencsv.CSVReader;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -22,29 +27,54 @@ public class EmployeeTable extends javax.swing.JFrame {
      */
     public EmployeeTable() {
         initComponents();
+        
         DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
+        
+        model = new DefaultTableModel(model.getDataVector(), new Vector<>(Arrays.asList("Employee Number", "Last Name", "First Name", "Phone Number", "Status", "Position", "Immediate Supervisor"))) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        
+        jTableEmpTable.setModel(model);
 
 try {
-    InputStream is = getClass().getResourceAsStream("/data/employee_info.csv");
-    BufferedReader br = new BufferedReader(new InputStreamReader(is));
-    String line;
+    CSVReader reader = new CSVReader(new FileReader("src/data/employee_info.csv"));
+    String[] row;
     boolean skipHeader = true;
 
-    while ((line = br.readLine()) != null) {
-        if (skipHeader) { 
+    while ((row = reader.readNext()) != null) {
+        if (skipHeader) {
             skipHeader = false;
-            continue; // Skip header
+            continue; // Skip header row
         }
-        String[] row = line.split(",");
+        String supervisorFullName = row[6].trim();
+        System.out.println("Immediate Supervisor (Extracted): " + supervisorFullName);
+        
         model.addRow(row);
     }
-    br.close();
+    reader.close();
+
+    
     
 } catch (Exception e) {
     e.printStackTrace();
 }
+        jTableEmpTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        jTableEmpTable.getColumnModel().getColumn(6).setPreferredWidth(280);
+        jTableEmpTable.getTableHeader().setResizingAllowed(true);
+
+        // ✅ Adjust cell renderer to align text properly
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(DefaultTableCellRenderer.LEFT);
+        jTableEmpTable.getColumnModel().getColumn(6).setCellRenderer(renderer);
 
     }
+
+
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -7,8 +7,14 @@
  *
  * @author singh
  */
+
+import javax.swing.JOptionPane;
+
 public class LoginScreen1 extends javax.swing.JFrame {
-    MainMenu fmain = new MainMenu ();
+    
+    private final String DEFAULT_USERNAME = "admin";
+    private final String DEFAULT_PASSWORD = "12345";
+
 
     /**
      * Creates new form LoginScreen1
@@ -94,9 +100,25 @@ public class LoginScreen1 extends javax.swing.JFrame {
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // TODO add your handling code here:
-        fmain.show();
-       
-                
+        String username = jTextFieldUsername.getText();
+        String password = jTextFieldPassword.getText();
+        
+  if (username.equals("admin") && password.equals("1234")) {
+        JOptionPane.showMessageDialog(this, "Login Successful!");
+        
+        //Open MainMenu screen
+        MainMenu main = new MainMenu();
+        main.setVisible(true);  //show main screen
+        main.setLocationRelativeTo(null); //Center the screen (optional)
+        
+        this.dispose(); //close the log in screen
+    }else {
+        JOptionPane.showMessageDialog(this, "Invalid username or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+        
+        //Clear the textfields
+        jTextFieldUsername.setText(",");
+        jTextFieldPassword.setText(",");
+        }         
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     /**

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLblSSS" max="32767" attributes="0"/>
+                                  <Component id="jLblTIN" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLblPHILHEALTH" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLblPAGIBIG" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLblEmpNum" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jLblPosition" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblStatus" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblPhoneNumber" alignment="0" pref="108" max="32767" attributes="0"/>
+                                      <Component id="jLblFirstName" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLblLastName" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLblImmSup" alignment="0" pref="132" max="32767" attributes="0"/>
+                                  <Component id="jLabelAddEmp" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jTxtEmpNum" min="-2" pref="211" max="-2" attributes="0"/>
+                                          <Component id="jTxtStatus" min="-2" pref="211" max="-2" attributes="0"/>
+                                          <Component id="jTxtPhoneNumber" alignment="0" min="-2" pref="211" max="-2" attributes="0"/>
+                                          <Component id="jTxtFirstName" alignment="0" min="-2" pref="211" max="-2" attributes="0"/>
+                                          <Component id="jTxtLastName" alignment="0" min="-2" pref="211" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <Component id="jTxtPosition" min="-2" pref="211" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jTxtImmSup" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jTextSSS" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jTextPAGIBIG" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jTextPHILHEALTH" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jTextTIN" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Component id="jLblPersonal" min="-2" pref="146" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButtonCancel" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonSubmit" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="102" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <Component id="jLabelAddEmp" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Component id="jLblPersonal" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLblEmpNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTxtEmpNum" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLblLastName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTxtLastName" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLblFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTxtFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLblPhoneNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTxtPhoneNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLblStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTxtStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLblPosition" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTxtPosition" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLblImmSup" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTxtImmSup" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLblSSS" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextSSS" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLblPAGIBIG" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextPAGIBIG" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLblPHILHEALTH" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextPHILHEALTH" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLblTIN" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextTIN" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="39" max="32767" attributes="0"/>
+              <Component id="jButtonSubmit" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButtonCancel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLabelAddEmp">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="13" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Add New Employee"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblEmpNum">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Employee Number:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblLastName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Last Name:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblFirstName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="First Name:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblPhoneNumber">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Phone Number:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblStatus">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Status:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblPosition">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Position:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblImmSup">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Immediate Supervisor:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblPersonal">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Personal Information"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTxtEmpNum">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtEmpNumActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTxtLastName">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTxtFirstName">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTxtPhoneNumber">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTxtStatus">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTxtPosition">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTxtImmSup">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtImmSupActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblSSS">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="SSS"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblPAGIBIG">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="PAGIBIG"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblPHILHEALTH">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="PHILEALTH"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblTIN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="TIN"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextSSS">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextSSSActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextPAGIBIG">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextPHILHEALTH">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextTIN">
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonSubmit">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Submit"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonCancel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cancel"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

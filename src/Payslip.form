@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jLblPayrollName" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLblPayrollEmpNum" alignment="0" pref="169" max="32767" attributes="0"/>
+                  <Component id="jLblPayrollSSS" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLblPayrollPhilhealth" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLblPayrollPagibig" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLblPayrollTIN" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="799" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="jLblPayrollName" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jLblPayrollEmpNum" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jLblPayrollSSS" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jLblPayrollPhilhealth" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jLblPayrollPagibig" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jLblPayrollTIN" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="439" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLblPayrollName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Name:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblPayrollEmpNum">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Employee Number:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblPayrollSSS">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="SSS:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblPayrollPhilhealth">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Philhealth:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblPayrollPagibig">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pagibig:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblPayrollTIN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="TIN:"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

@@ -8,6 +8,9 @@
  * @author singh
  */
 public class MainMenu extends javax.swing.JFrame {
+    EmployeeTable femptable = new EmployeeTable ();
+    Payslip fpayslip = new Payslip ();
+    
 
     /**
      * Creates new form MainMenu
@@ -54,15 +57,30 @@ public class MainMenu extends javax.swing.JFrame {
 
         jButtonEmployee.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonEmployee.setText("Employee Information");
+        jButtonEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEmployeeActionPerformed(evt);
+            }
+        });
 
         jButtonAttendance.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonAttendance.setText("Attendance");
 
         jButtonPayslip.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonPayslip.setText("Payslip");
+        jButtonPayslip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPayslipActionPerformed(evt);
+            }
+        });
 
         jButtonExit2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonExit2.setText("Exit");
+        jButtonExit2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExit2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,6 +130,23 @@ public class MainMenu extends javax.swing.JFrame {
     private void jButtonTimeinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTimeinActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonTimeinActionPerformed
+
+    private void jButtonEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmployeeActionPerformed
+        // TODO add your handling code here:
+        femptable.show();
+        
+    }//GEN-LAST:event_jButtonEmployeeActionPerformed
+
+    private void jButtonPayslipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPayslipActionPerformed
+        // TODO add your handling code here:
+        fpayslip.show();
+        
+    }//GEN-LAST:event_jButtonPayslipActionPerformed
+
+    private void jButtonExit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExit2ActionPerformed
+        // TODO add your handling code here:
+        dispose ();
+    }//GEN-LAST:event_jButtonExit2ActionPerformed
 
     /**
      * @param args the command line arguments

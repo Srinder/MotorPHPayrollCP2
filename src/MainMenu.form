@@ -114,6 +114,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Employee Information"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEmployeeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonAttendance">
       <Properties>
@@ -130,6 +133,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Payslip"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPayslipActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonExit2">
       <Properties>
@@ -138,6 +144,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Exit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExit2ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

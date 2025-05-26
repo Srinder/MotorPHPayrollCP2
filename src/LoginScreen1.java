@@ -53,7 +53,7 @@ public class LoginScreen1 extends javax.swing.JFrame {
         textLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textLogo.setText("MotorPH");
 
-        loginLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoHeader.png"))); // NOI18N
+        loginLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loginLogo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,16 +65,16 @@ public class LoginScreen1 extends javax.swing.JFrame {
                         .addGap(83, 83, 83)
                         .addComponent(textLogo))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
+                        .addGap(67, 67, 67)
                         .addComponent(loginLogo)))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(222, Short.MAX_VALUE)
+                .addContainerGap(137, Short.MAX_VALUE)
                 .addComponent(loginLogo)
-                .addGap(177, 177, 177)
+                .addGap(84, 84, 84)
                 .addComponent(textLogo)
                 .addGap(40, 40, 40))
         );

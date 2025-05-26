@@ -592,7 +592,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel45">
           <Properties>
-            <Property name="text" type="java.lang.String" value=" Status"/>
+            <Property name="text" type="java.lang.String" value="Status"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -686,7 +686,7 @@
         <Component class="javax.swing.JLabel" name="jLabel54">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="XX-XXXX057-3"/>
+            <Property name="text" type="java.lang.String" value="**-****057-3"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -697,7 +697,7 @@
         <Component class="javax.swing.JLabel" name="jLabel55">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="XXX-XXX-XX7-000"/>
+            <Property name="text" type="java.lang.String" value="***-***-**7-000"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -708,7 +708,7 @@
         <Component class="javax.swing.JLabel" name="jLabel56">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="1000012345678"/>
+            <Property name="text" type="java.lang.String" value="*********5678"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -729,7 +729,7 @@
         <Component class="javax.swing.JLabel" name="jLabel58">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="XXXXXXXX3951"/>
+            <Property name="text" type="java.lang.String" value="********3951"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -740,7 +740,7 @@
         <Component class="javax.swing.JLabel" name="jLabel59">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="XXXXXXXX0870"/>
+            <Property name="text" type="java.lang.String" value="********0870"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

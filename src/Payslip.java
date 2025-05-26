@@ -370,7 +370,7 @@ public class Payslip extends javax.swing.JFrame {
         jLabel44.setText("Employee Position");
         jPanel3.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        jLabel45.setText(" Status");
+        jLabel45.setText("Status");
         jPanel3.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         jLabel46.setText("SSS Number");
@@ -401,26 +401,26 @@ public class Payslip extends javax.swing.JFrame {
         jPanel3.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 68, -1));
 
         jLabel54.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel54.setText("XX-XXXX057-3");
+        jLabel54.setText("**-****057-3");
         jPanel3.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 120, -1));
 
         jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel55.setText("XXX-XXX-XX7-000");
+        jLabel55.setText("***-***-**7-000");
         jPanel3.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 130, 130, -1));
 
         jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel56.setText("1000012345678");
+        jLabel56.setText("*********5678");
         jPanel3.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 130, -1));
 
         jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jPanel3.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 181, 90, -1));
 
         jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel58.setText("XXXXXXXX3951");
+        jLabel58.setText("********3951");
         jPanel3.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 120, -1));
 
         jLabel59.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel59.setText("XXXXXXXX0870");
+        jLabel59.setText("********0870");
         jPanel3.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 110, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

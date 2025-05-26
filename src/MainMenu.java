@@ -47,7 +47,6 @@ public class MainMenu extends javax.swing.JFrame {
         jButtonExit2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -55,7 +54,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabelTitle2.setBackground(new java.awt.Color(255, 255, 255));
         jLabelTitle2.setFont(new java.awt.Font("Kinetika Bold", 1, 36)); // NOI18N
         jLabelTitle2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTitle2.setText("Welcome, Carlos Garcia III");
+        jLabelTitle2.setText("Welcome, Manuel Garcia III");
         jLabelTitle2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         jButtonTimein.setBackground(new java.awt.Color(0, 51, 204));
@@ -108,10 +107,9 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(headerLogo)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(88, 88, 88)
-                        .addComponent(jButtonTimein, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jButtonTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonTimein, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(12, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)

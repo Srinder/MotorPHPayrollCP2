@@ -62,12 +62,20 @@ public class AddEmployee extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 600));
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jTextPAGIBIG, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 323, 211, -1));
+
         jLabelAddEmp.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabelAddEmp.setText("Add New Employee");
+        jPanel1.add(jLabelAddEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 22, 130, -1));
+        jPanel1.add(jTextPHILHEALTH, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 353, 211, -1));
 
         jLblEmpNum.setText("Employee Number:");
+        jPanel1.add(jLblEmpNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 107, 119, -1));
+        jPanel1.add(jTextTIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 383, 212, -1));
 
         jLblLastName.setText("Last Name:");
+        jPanel1.add(jLblLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 137, 132, -1));
 
         jButtonSubmit.setText("Submit");
         jButtonSubmit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -76,37 +84,54 @@ public class AddEmployee extends javax.swing.JFrame {
                 jButtonSubmitActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 435, 54, -1));
 
         jLblFirstName.setText("First Name:");
+        jPanel1.add(jLblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 164, 132, -1));
 
         jLblPhoneNumber.setText("Phone Number:");
+        jPanel1.add(jLblPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 194, 132, -1));
 
         jLblStatus.setText("Status:");
+        jPanel1.add(jLblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 230, 132, -1));
 
         jLblPosition.setText("Position:");
+        jPanel1.add(jLblPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 260, 132, -1));
 
         jTxtEmpNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtEmpNumActionPerformed(evt);
             }
         });
+        jPanel1.add(jTxtEmpNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 104, 211, -1));
+        jPanel1.add(jTxtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 134, 211, -1));
+        jPanel1.add(jTxtFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 164, 211, -1));
+        jPanel1.add(jTxtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 194, 211, -1));
+        jPanel1.add(jTxtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 227, 211, -1));
+        jPanel1.add(jTxtPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 257, 211, -1));
 
         jLblSSS.setText("SSS");
+        jPanel1.add(jLblSSS, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 296, 132, -1));
 
         jLblPAGIBIG.setText("PAGIBIG");
+        jPanel1.add(jLblPAGIBIG, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 326, 132, -1));
 
         jLblPHILHEALTH.setText("PHILEALTH");
+        jPanel1.add(jLblPHILHEALTH, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 353, 132, -1));
 
         jLblTIN.setText("TIN");
+        jPanel1.add(jLblTIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 386, 132, -1));
 
         jTextSSS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextSSSActionPerformed(evt);
             }
         });
+        jPanel1.add(jTextSSS, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 293, 211, -1));
 
         jLblPersonal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLblPersonal.setText("Personal Information");
+        jPanel1.add(jLblPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 71, 146, -1));
 
         jButtonCancel.setText("Close");
         jButtonCancel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -115,110 +140,7 @@ public class AddEmployee extends javax.swing.JFrame {
                 jButtonCancelActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelAddEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLblEmpNum, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLblLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLblFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLblPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLblPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLblSSS, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLblPHILHEALTH, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLblTIN, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLblPAGIBIG, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTxtEmpNum, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                                .addComponent(jTxtLastName)
-                                .addComponent(jTxtFirstName)
-                                .addComponent(jTxtPhoneNumber)
-                                .addComponent(jTxtStatus)
-                                .addComponent(jTxtPosition)
-                                .addComponent(jTextSSS)
-                                .addComponent(jTextPAGIBIG)
-                                .addComponent(jTextPHILHEALTH))
-                            .addComponent(jTextTIN, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLblPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabelAddEmp)
-                .addGap(32, 32, 32)
-                .addComponent(jLblPersonal)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblEmpNum)
-                    .addComponent(jTxtEmpNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblLastName)
-                    .addComponent(jTxtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLblFirstName)
-                    .addComponent(jTxtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLblPhoneNumber)
-                    .addComponent(jTxtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblStatus)
-                    .addComponent(jTxtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblPosition)
-                    .addComponent(jTxtPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblSSS)
-                    .addComponent(jTextSSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblPAGIBIG)
-                    .addComponent(jTextPAGIBIG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLblPHILHEALTH)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLblTIN)
-                            .addComponent(jTextTIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jTextPHILHEALTH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jButtonSubmit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonCancel)
-                .addContainerGap(241, Short.MAX_VALUE))
-        );
+        jPanel1.add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 469, 53, -1));
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -270,7 +192,7 @@ public class AddEmployee extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addContainerGap(420, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

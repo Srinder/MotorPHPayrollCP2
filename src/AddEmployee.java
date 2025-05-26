@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import javax.swing.JOptionPane;
 /**
  *
  * @author singh
@@ -292,14 +295,54 @@ public class AddEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextSSSActionPerformed
 
     private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
-        // TODO add your handling code here:
-        
-        JOptionPane.showMessageDialog(this, "Submitted!");
+  // TODO add your handling code here:                                            
+    try {
+        // ✅ Collect employee details
+        String empNum = jTxtEmpNum.getText().trim();
+        String lastName = jTxtLastName.getText().trim();
+        String firstName = jTxtFirstName.getText().trim();
+        String phoneNumber = jTxtPhoneNumber.getText().trim();
+        String status = jTxtStatus.getText().trim();
+        String position = jTxtPosition.getText().trim();
+        String sss = jTextSSS.getText().trim();
+        String pagibig = jTextPAGIBIG.getText().trim();
+        String philhealth = jTextPHILHEALTH.getText().trim();
+        String tin = jTextTIN.getText().trim();
+        String supervisor = "NA"; // Adjust this for actual supervisor input
+
+        // ✅ Validate required fields
+        if (empNum.isEmpty() || lastName.isEmpty() || firstName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Employee Number, Last Name, and First Name are required!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // ✅ Save Employee Data to CSV
+        FileWriter fw = new FileWriter("src/data/employee_info.csv", true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter out = new PrintWriter(bw);
+        out.println(String.join(",", empNum, lastName, firstName, phoneNumber, status, position, supervisor, sss, pagibig, philhealth, tin));
+        out.close();
+
+        // ✅ Refresh EmployeeTable to instantly display new entry
+        if (EmployeeTable.getInstance() != null) {
+            EmployeeTable.getInstance().refreshEmployeeTable(); // ✅ Refresh JTable immediately
+        }
+
+        // ✅ Show confirmation
+        JOptionPane.showMessageDialog(this, "Employee added successfully!");
+
+        // ✅ Close AddEmployee window after submission
+        dispose();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error adding employee. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButtonSubmitActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
         // TODO add your handling code here:
-        dispose ();
+    dispose(); 
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     /**

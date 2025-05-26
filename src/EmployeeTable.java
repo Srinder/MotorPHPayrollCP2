@@ -6,7 +6,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Vector;
 import java.util.Arrays;
+import java.io.IOException;
 import com.opencsv.CSVReader;
+import javax.swing.JOptionPane; 
+import java.io.File;           
+import java.io.BufferedWriter;  
+import java.io.FileWriter;    
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -17,15 +23,17 @@ import com.opencsv.CSVReader;
  * @author singh
  */
 public class EmployeeTable extends javax.swing.JFrame {
-    AddEmployee addemp = new AddEmployee ();
-    ViewEmpInfo viewinfo = new ViewEmpInfo ();
-    EditEmpInfo editinfo = new EditEmpInfo ();
-    
+    AddEmployee addemp = new AddEmployee();
+    ViewEmpInfo viewinfo = new ViewEmpInfo();
+    EditEmpInfo editinfo = new EditEmpInfo();
+
+    private static EmployeeTable instance; // ✅ Track the active instance
 
     /**
      * Creates new form EmployeeTable
      */
     public EmployeeTable() {
+        instance = this; // ✅ Store the active instance
         initComponents();
         
         DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
@@ -38,29 +46,36 @@ public class EmployeeTable extends javax.swing.JFrame {
         };
         
         jTableEmpTable.setModel(model);
-
-try {
-    CSVReader reader = new CSVReader(new FileReader("src/data/employee_info.csv"));
-    String[] row;
-    boolean skipHeader = true;
-
-    while ((row = reader.readNext()) != null) {
-        if (skipHeader) {
-            skipHeader = false;
-            continue; // Skip header row
-        }
-        String supervisorFullName = row[6].trim();
-        System.out.println("Immediate Supervisor (Extracted): " + supervisorFullName);
-        
-        model.addRow(row);
+        loadEmployeeData();
+        adjustTableSettings();
     }
-    reader.close();
 
-    
-    
-} catch (Exception e) {
-    e.printStackTrace();
-}
+    // ✅ Public method to get the active table instance
+    public static EmployeeTable getInstance() {
+        return instance;
+    }
+
+    private void loadEmployeeData() {
+        DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
+        model.setRowCount(0);
+
+        try {
+            CSVReader reader = new CSVReader(new FileReader("src/data/employee_info.csv"));
+            String[] row;
+            boolean skipHeader = true;
+
+            while ((row = reader.readNext()) != null) {
+                if (skipHeader) {
+                    skipHeader = false;
+                    continue; // Skip header row
+                }
+                String supervisorFullName = row[6].trim();
+                model.addRow(row);
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         jTableEmpTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jTableEmpTable.getColumnModel().getColumn(6).setPreferredWidth(280);
         jTableEmpTable.getTableHeader().setResizingAllowed(true);
@@ -69,11 +84,25 @@ try {
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(DefaultTableCellRenderer.LEFT);
         jTableEmpTable.getColumnModel().getColumn(6).setCellRenderer(renderer);
-
     }
 
+    public void refreshEmployeeTable() {
+        if (instance != null) { // ✅ Ensure active window exists
+            DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
+            model.setRowCount(0); // ✅ Clear current rows
+            loadEmployeeData();   // ✅ Reload fresh data from CSV
+        }
+    }
 
+    // ✅ Table Formatting
+    private void adjustTableSettings() {
+        jTableEmpTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        jTableEmpTable.getColumnModel().getColumn(6).setPreferredWidth(300); // ✅ Adjust column width
 
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(DefaultTableCellRenderer.LEFT);
+        jTableEmpTable.getColumnModel().getColumn(6).setCellRenderer(renderer);
+    }
 
 
     /**
@@ -148,6 +177,11 @@ try {
 
         jButtonDelete.setText("Delete");
         jButtonDelete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
 
         jLabelEmpInfo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabelEmpInfo.setForeground(new java.awt.Color(255, 255, 204));
@@ -238,6 +272,62 @@ try {
         // TODO add your handling code here:
         editinfo.show();
     }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTableEmpTable.getSelectedRow();
+
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Please select an employee to delete.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this employee?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+    if (confirm != JOptionPane.YES_OPTION) {
+        return; // Cancel deletion
+    }
+
+    // ✅ Get Employee Number of Selected Row
+    String empNumToDelete = jTableEmpTable.getValueAt(selectedRow, 0).toString();
+
+    // ✅ Remove Employee from JTable
+    DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
+    model.removeRow(selectedRow);
+
+    // ✅ Update CSV File by Removing the Deleted Employee
+    try {
+        File inputFile = new File("src/data/employee_info.csv");
+        File tempFile = new File("src/data/temp_employee_info.csv");
+
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+        String line;
+        boolean skipHeader = true;
+        while ((line = reader.readLine()) != null) {
+            if (skipHeader) {
+                writer.write(line + "\n"); // Keep header row
+                skipHeader = false;
+                continue;
+            }
+            if (!line.startsWith(empNumToDelete + ",")) {
+                writer.write(line + "\n"); // Keep non-deleted rows
+            }
+        }
+
+        reader.close();
+        writer.close();
+
+        // ✅ Replace old file with updated file
+        inputFile.delete();
+        tempFile.renameTo(inputFile);
+    } catch (IOException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error deleting employee.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    JOptionPane.showMessageDialog(this, "Employee deleted successfully!");
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     /**
      * @param args the command line arguments

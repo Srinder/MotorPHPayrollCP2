@@ -58,26 +58,28 @@ public class AddEmployee extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        textLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 600));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jTextPAGIBIG, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 323, 211, -1));
 
-        jLabelAddEmp.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabelAddEmp.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabelAddEmp.setText("Add New Employee");
-        jPanel1.add(jLabelAddEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 22, 160, -1));
+        jPanel1.add(jLabelAddEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 22, 210, -1));
         jPanel1.add(jTextPHILHEALTH, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 353, 211, -1));
 
         jLblEmpNum.setText("Employee Number:");
-        jPanel1.add(jLblEmpNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 107, 119, -1));
+        jPanel1.add(jLblEmpNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 107, 140, -1));
         jPanel1.add(jTextTIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 383, 212, -1));
 
         jLblLastName.setText("Last Name:");
         jPanel1.add(jLblLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 137, 132, -1));
 
+        jButtonSubmit.setBackground(new java.awt.Color(14, 49, 113));
+        jButtonSubmit.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSubmit.setText("Submit");
         jButtonSubmit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +87,7 @@ public class AddEmployee extends javax.swing.JFrame {
                 jButtonSubmitActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 435, 54, -1));
+        jPanel1.add(jButtonSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 90, -1));
 
         jLblFirstName.setText("First Name:");
         jPanel1.add(jLblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 164, 132, -1));
@@ -132,8 +134,10 @@ public class AddEmployee extends javax.swing.JFrame {
 
         jLblPersonal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLblPersonal.setText("Personal Information");
-        jPanel1.add(jLblPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 71, 146, -1));
+        jPanel1.add(jLblPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 71, 170, -1));
 
+        jButtonCancel.setBackground(new java.awt.Color(153, 0, 0));
+        jButtonCancel.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCancel.setText("Close");
         jButtonCancel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -141,11 +145,10 @@ public class AddEmployee extends javax.swing.JFrame {
                 jButtonCancelActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 469, 53, -1));
+        jPanel1.add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 470, 90, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 0, 400, -1));
-
-        jPanel2.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel2.setBackground(new java.awt.Color(14, 49, 113));
+        jPanel2.setAutoscrolls(true);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 204));
 
@@ -159,7 +162,7 @@ public class AddEmployee extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,24 +172,56 @@ public class AddEmployee extends javax.swing.JFrame {
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
+        textLogo.setFont(new java.awt.Font("Kinetika Bold", 0, 55)); // NOI18N
+        textLogo.setForeground(new java.awt.Color(255, 255, 255));
+        textLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textLogo.setText("MotorPH");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(textLogo))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(75, 75, 75)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(336, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
+                .addComponent(textLogo)
+                .addGap(21, 21, 21))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 17, -1, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -314,5 +349,6 @@ public class AddEmployee extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtPhoneNumber;
     private javax.swing.JTextField jTxtPosition;
     private javax.swing.JTextField jTxtStatus;
+    private javax.swing.JLabel textLogo;
     // End of variables declaration//GEN-END:variables
 }

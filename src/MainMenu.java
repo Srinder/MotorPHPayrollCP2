@@ -55,7 +55,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabelTitle2.setBackground(new java.awt.Color(255, 255, 255));
         jLabelTitle2.setFont(new java.awt.Font("Kinetika Bold", 1, 36)); // NOI18N
         jLabelTitle2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTitle2.setText("Welcome, Carlos Garcia III");
+        jLabelTitle2.setText("Welcome, Manuel Garcia III");
         jLabelTitle2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         jButtonTimein.setBackground(new java.awt.Color(0, 51, 204));

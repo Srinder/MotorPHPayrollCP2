@@ -34,6 +34,7 @@ public class LoginScreen1 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         textLogo = new javax.swing.JLabel();
+        loginLogo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jTextFieldUsername = new javax.swing.JTextField();
         jLabelUsername = new javax.swing.JLabel();
@@ -52,19 +53,28 @@ public class LoginScreen1 extends javax.swing.JFrame {
         textLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textLogo.setText("MotorPH");
 
+        loginLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoHeader.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(textLogo)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(textLogo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(loginLogo)))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(492, Short.MAX_VALUE)
+                .addContainerGap(222, Short.MAX_VALUE)
+                .addComponent(loginLogo)
+                .addGap(177, 177, 177)
                 .addComponent(textLogo)
                 .addGap(40, 40, 40))
         );
@@ -179,6 +189,7 @@ public class LoginScreen1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField jTextFieldUsername;
+    private javax.swing.JLabel loginLogo;
     private javax.swing.JLabel textLogo;
     // End of variables declaration//GEN-END:variables
 }

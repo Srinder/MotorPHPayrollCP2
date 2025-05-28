@@ -8,6 +8,7 @@
  * @author singh
  */
 
+import java.awt.Font;
 import javax.swing.JOptionPane;
 
 public class LoginScreen1 extends javax.swing.JFrame {
@@ -47,37 +48,16 @@ public class LoginScreen1 extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(14, 49, 113));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         textLogo.setFont(new java.awt.Font("Kinetika Bold", 0, 55)); // NOI18N
         textLogo.setForeground(new java.awt.Color(255, 255, 255));
         textLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textLogo.setText("MotorPH");
+        jPanel1.add(textLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 492, -1, -1));
 
         loginLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loginLogo.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(textLogo))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(loginLogo)))
-                .addContainerGap(72, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
-                .addComponent(loginLogo)
-                .addGap(84, 84, 84)
-                .addComponent(textLogo)
-                .addGap(40, 40, 40))
-        );
+        jPanel1.add(loginLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 137, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 602));
 

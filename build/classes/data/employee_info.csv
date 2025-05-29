@@ -1,6 +1,6 @@
 Employee #,Last Name,First Name,Phone Number,Status,Position,Immediate Supervisor
 10001,Garcia,Manuel III,966-860-270,Regular,Chief Executive Officer,N/A
-10002,Lim,Antonio,171-867-411,Regular,Chief Operating Officer,"Garcia, Manuel III"
+10002,Lim,Antonio,171-867-41109,Regular,Chief Operating Officer,"Garcia, Manuel III"
 10003,Aquino,Bianca Sofia,966-889-370,Regular,Chief Finance Officer,"Garcia, Manuel III"
 10004,Reyes,Isabella,786-868-477,Regular,Chief Marketing Officer,"Garcia, Manuel III"
 10005,Hernandez,Eduard,088-861-012,Regular,IT Operations and Systems,"Lim, Antonio"

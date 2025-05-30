@@ -18,6 +18,7 @@ import java.io.FileWriter;              // Enables appending updated employee da
 import java.io.IOException;             // Handles file-related errors (reading/writing issues)
 import java.util.Arrays;                // Provides array manipulation utilities
 import javax.swing.JOptionPane;         // Allows error handling with pop-up messages
+import java.util.ArrayList;            // Provides dynamic lists that allow easy data manipulation
 
 public class EditEmpInfo extends javax.swing.JFrame {
     private String empNumToEdit;  // Stores the Employee Number to edit/view
@@ -571,80 +572,60 @@ public class EditEmpInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_EditActionPerformed
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
-    // Handles saving updated employee details when the "Save" button is clicked
+    // Handles saving updated employee details
 
-    try {
-        // Locate the employee CSV file and create a temporary file for updates
-        File inputFile = new File("src/data/employee_info.csv");
-        File tempFile = new File("src/data/temp_employee_info.csv");
-
-        BufferedReader reader = new BufferedReader(new FileReader(inputFile)); // Reads the original file
-        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));  // Writes the updated file
-
+    // Load all employee records into an ArrayList for efficient modifications
+    ArrayList<String> employeeRecords = new ArrayList<>();
+    try (BufferedReader reader = new BufferedReader(new FileReader("src/data/employee_info.csv"))) {
         String line;
-        boolean skipHeader = true; // Ensure header row is retained
-
         while ((line = reader.readLine()) != null) {
-            if (skipHeader) {
-                writer.write(line + "\n"); // Keep header row in the new file
-                skipHeader = false;
-                continue;
-            }
-
-            // Parse CSV correctly while handling quoted values
-            String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-
-            // Ensure correct array size in case of missing fields
-            if (data.length < 7) {
-                data = Arrays.copyOf(data, 7); 
-            }
-
-            // Prevent duplication of Immediate Supervisor by formatting the field correctly
-            data[6] = "\"" + ImmSup.getText().trim() + "\""; 
-
-            // If this row matches the employee being edited, update the data fields
-            if (data[0].trim().equals(empNumToEdit)) {  
-                data[1] = Name.getText().trim();
-                data[2] = Position.getText().trim();
-                data[3] = PhoneNum.getText().trim();
-                data[4] = Status.getText().trim();
-                data[5] = Salary.getText().trim();
-
-                // Maintain proper CSV format with updated details
-                line = String.join(",", data);  
-            }
-
-            writer.write(line + "\n"); // Write updated or unchanged line
+            employeeRecords.add(line); // Store each employee record in memory
         }
-
-        // Close file streams after processing
-        reader.close();
-        writer.close();
-
-        // Replace old CSV file with the updated employee records
-        if (inputFile.delete()) {
-            if (tempFile.renameTo(inputFile)) {
-                JOptionPane.showMessageDialog(this, "Employee record updated successfully!");
-
-                // Refresh EmployeeTable to instantly display the updated entry
-                if (EmployeeTable.instance != null) {
-                    EmployeeTable.instance.refreshEmployeeTable(); // Auto-refresh the table
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Error renaming temp file.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error deleting old file.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-        // Disable editing after saving and close the edit window
-        setFieldsEditable(false); 
-        dispose(); 
-
     } catch (IOException e) {
-        e.printStackTrace(); // Print error details for debugging
-        JOptionPane.showMessageDialog(this, "Error saving changes!", "Error", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error loading employee data!", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
     }
+
+    // Find and update the employee record within the ArrayList
+    for (int i = 1; i < employeeRecords.size(); i++) { // Start from 1 to skip header row
+        String[] data = employeeRecords.get(i).split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // Correct CSV parsing
+        
+        // Identify the correct employee by matching Employee Number
+        if (data[0].trim().equals(empNumToEdit)) {
+            data[1] = Name.getText().trim();
+            data[2] = Position.getText().trim();
+            data[3] = PhoneNum.getText().trim();
+            data[4] = Status.getText().trim();
+            data[5] = Salary.getText().trim();
+            data[6] = "\"" + ImmSup.getText().trim() + "\""; // Format Immediate Supervisor field correctly
+
+            employeeRecords.set(i, String.join(",", data)); // Update the record in-memory
+            break; // Stop searching once the employee is found and updated
+        }
+    }
+
+    // Write the updated employee records back to the CSV file in a single operation
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/employee_info.csv"))) {
+        for (String record : employeeRecords) {
+            writer.write(record + "\n"); // Write each updated record to the file
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error saving employee data!", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    JOptionPane.showMessageDialog(this, "Employee record updated successfully!");
+    
+    // Refresh the table view to reflect changes
+    if (EmployeeTable.getInstance() != null) {
+        EmployeeTable.getInstance().refreshEmployeeTable(); 
+    }
+
+    // Close editing mode after saving
+    setFieldsEditable(false); 
+    dispose(); 
     }//GEN-LAST:event_SaveActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

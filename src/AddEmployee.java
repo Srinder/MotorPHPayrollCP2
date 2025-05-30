@@ -6,6 +6,7 @@ import java.io.File;             // Represents the employee CSV file
 import java.io.BufferedReader;   // Reads data from the CSV file
 import java.io.FileReader;       // Reads file contents line by line
 import java.io.IOException;      // Handles file-related errors (reading/writing issues)
+import java.util.ArrayList;      // Provides dynamic lists that allow easy data manipulation
 
 /**
  * `AddEmployee` class allows users to add new employee records.
@@ -337,74 +338,75 @@ public class AddEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextSSSActionPerformed
 
     private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
-    // Handles the process of adding a new employee when the "Submit" button is clicked
+    // Handles adding a new employee when the "Submit" button is clicked
 
-    try {
-        // Read the last Employee Number from the CSV file to auto-increment
-        File inputFile = new File("src/data/employee_info.csv");
-        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+    // Retrieve employee details from form input fields
+    String lastName = jTxtLastName.getText().trim();
+    String firstName = jTxtFirstName.getText().trim();
+    String phoneNumber = jTxtPhoneNumber.getText().trim();
+    String status = jTxtStatus.getText().trim();
+    String position = jTxtPosition.getText().trim();
+    String sss = jTextSSS.getText().trim();
+    String pagibig = jTextPAGIBIG.getText().trim();
+    String philhealth = jTextPHILHEALTH.getText().trim();
+    String tin = jTextTIN.getText().trim();
+    String supervisor = "NA"; // Adjust this for actual supervisor input
 
-        String lastLine = "", line;
-        while ((line = reader.readLine()) != null) {
-            lastLine = line; // Store the last valid employee entry
-        }
-        reader.close();
-
-        // Extract last Employee Number and increment it by 1
-        int newEmpNum = 10001; // Default starting number if CSV is empty
-        if (!lastLine.isEmpty()) {
-            String[] data = lastLine.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // Correctly split CSV data
-            if (data.length > 0) {
-                newEmpNum = Integer.parseInt(data[0].trim()) + 1; // Auto-increment Employee Number
-            }
-        }
-
-        // Set new Employee Number & disable editing
-        jTxtEmpNum.setText(String.valueOf(newEmpNum));
-        jTxtEmpNum.setEditable(false); // Prevent manual edits
-
-        // Collect other employee details from input fields
-        String lastName = jTxtLastName.getText().trim();
-        String firstName = jTxtFirstName.getText().trim();
-        String phoneNumber = jTxtPhoneNumber.getText().trim();
-        String status = jTxtStatus.getText().trim();
-        String position = jTxtPosition.getText().trim();
-        String sss = jTextSSS.getText().trim();
-        String pagibig = jTextPAGIBIG.getText().trim();
-        String philhealth = jTextPHILHEALTH.getText().trim();
-        String tin = jTextTIN.getText().trim();
-        String supervisor = "NA"; // Adjust this for actual supervisor input
-
-        // Validate required fields before saving
-        if (lastName.isEmpty() || firstName.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Last Name and First Name are required!", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Save Employee Data to CSV using try-with-resources
-        try (FileWriter fw = new FileWriter(inputFile, true);
-             BufferedWriter bw = new BufferedWriter(fw);
-             PrintWriter out = new PrintWriter(bw)) {
-
-            // Write the new employee entry to the CSV file
-            out.println(String.join(",", String.valueOf(newEmpNum), lastName, firstName, phoneNumber, status, position, supervisor, sss, pagibig, philhealth, tin));
-        }
-
-        // Refresh EmployeeTable to instantly display the new entry
-        if (EmployeeTable.getInstance() != null) {
-            EmployeeTable.getInstance().refreshEmployeeTable(); // Refresh JTable immediately
-        }
-
-        // Show confirmation message to the user
-        JOptionPane.showMessageDialog(this, "Employee added successfully!");
-
-        // Close the "Add Employee" window after successful submission
-        dispose();
-
-    } catch (IOException e) {
-        e.printStackTrace(); // Print error details for debugging
-        JOptionPane.showMessageDialog(this, "Error saving employee data. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+    // Validate required fields before saving
+    if (lastName.isEmpty() || firstName.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Last Name and First Name are required!", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
     }
+
+    // Load all employee records into an ArrayList for efficient modifications
+    ArrayList<String> employeeRecords = new ArrayList<>();
+    int newEmpNum = 10001; // Default if CSV is empty
+    try (BufferedReader reader = new BufferedReader(new FileReader("src/data/employee_info.csv"))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            employeeRecords.add(line); // Store each employee record in memory
+        }
+
+        // Get the last Employee Number and auto-increment it
+        if (!employeeRecords.isEmpty()) {
+            String lastLine = employeeRecords.get(employeeRecords.size() - 1); // Get last entry
+            String[] lastData = lastLine.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+            newEmpNum = Integer.parseInt(lastData[0].trim()) + 1;
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error loading employee data!", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Create the new employee entry
+    String newEmployeeEntry = String.join(",", 
+        String.valueOf(newEmpNum), lastName, firstName, phoneNumber, status, position, supervisor, sss, pagibig, philhealth, tin
+    );
+
+    // Add the new employee entry to the list
+    employeeRecords.add(newEmployeeEntry);
+
+    // Write the updated employee records back to the CSV file in a single operation
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/employee_info.csv"))) {
+        for (String record : employeeRecords) {
+            writer.write(record + "\n"); // Write each updated record to the file
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error saving employee data!", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    JOptionPane.showMessageDialog(this, "Employee added successfully!");
+
+    // Refresh the table view to reflect new entries
+    if (EmployeeTable.getInstance() != null) {
+        EmployeeTable.getInstance().refreshEmployeeTable(); 
+    }
+
+    // Close the form after successful submission
+    dispose();
 
     }//GEN-LAST:event_jButtonSubmitActionPerformed
 

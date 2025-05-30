@@ -13,6 +13,7 @@ import java.io.File;                         // Represents the employee CSV file
 import java.io.BufferedWriter;               // Writes data to a file efficiently
 import java.io.FileWriter;                   // Enables appending updated employee data to the CSV
 import javax.swing.SwingUtilities;           // Provides smooth UI rendering
+import java.util.ArrayList;                  // Provides dynamic lists that allow easy data manipulation
 
 /**
  * `EmployeeTable` class displays and manages employee records in a table format.
@@ -68,39 +69,52 @@ public class EmployeeTable extends javax.swing.JFrame {
      * Uses OpenCSV to read file contents efficiently.
      */
     private void loadEmployeeData() {
-        DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
-        model.setRowCount(0); // Clears existing rows before loading new data
+    // Clears existing table rows before loading new data
+    DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
+    model.setRowCount(0);
 
-        try {
-            CSVReader reader = new CSVReader(new FileReader("src/data/employee_info.csv")); // Reads CSV file
-            String[] row;
-            boolean skipHeader = true; // Skips the header row if present
+    // Stores employee records in an ArrayList for efficient processing
+    ArrayList<String> employeeRecords = new ArrayList<>();
 
-            while ((row = reader.readNext()) != null) {
-                if (skipHeader) {
-                    skipHeader = false;
-                    continue; // Skip header row
-                }
+    try (BufferedReader reader = new BufferedReader(new FileReader("src/data/employee_info.csv"))) {
+        String line;
+        boolean skipHeader = true; // Skip the first row if it's a header
 
-                // Process and store Immediate Supervisor data
-                String supervisorFullName = row[6].trim();
-                model.addRow(row); // Adds employee details as a new row in the table
+        while ((line = reader.readLine()) != null) {
+            if (skipHeader) {
+                skipHeader = false;
+                continue; // Ignore the header row
             }
-            reader.close(); // Closes the file reader after processing
 
-        } catch (Exception e) {
-            e.printStackTrace(); // Prints error details for debugging
+            employeeRecords.add(line); // Store each valid employee entry
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error loading employee data.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Populate JTable with the employee records from the ArrayList
+    for (String record : employeeRecords) {
+        String[] rowData = record.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // Correctly split CSV columns
+
+        // **Remove unnecessary quotes from the Supervisor field (Column Index 6)**
+        if (rowData.length > 6) {
+            rowData[6] = rowData[6].replaceAll("^\"|\"$", "").trim(); // Removes surrounding quotes
         }
 
-        // Adjust table settings for proper alignment and formatting
-        jTableEmpTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        jTableEmpTable.getColumnModel().getColumn(6).setPreferredWidth(280);
-        jTableEmpTable.getTableHeader().setResizingAllowed(true);
+        model.addRow(rowData); // Add the processed employee data to the table
+    }
 
-        // Align text properly within table cells
-        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-        renderer.setHorizontalAlignment(DefaultTableCellRenderer.LEFT);
-        jTableEmpTable.getColumnModel().getColumn(6).setCellRenderer(renderer);
+    // Adjust table settings for readability
+    jTableEmpTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    jTableEmpTable.getColumnModel().getColumn(6).setPreferredWidth(280);
+    jTableEmpTable.getTableHeader().setResizingAllowed(true);
+
+    // Align text properly within table cells
+    DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+    renderer.setHorizontalAlignment(DefaultTableCellRenderer.LEFT);
+    jTableEmpTable.getColumnModel().getColumn(6).setCellRenderer(renderer);
     }
 
     /**
@@ -339,8 +353,7 @@ public class EmployeeTable extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-    // Handles the action when the "Delete" button is clicked
-    // Removes an employee from the JTable and updates the CSV file accordingly
+    // Handles the deletion of an employee when the "Delete" button is clicked
 
     int selectedRow = jTableEmpTable.getSelectedRow(); // Get the selected row index
 
@@ -349,60 +362,47 @@ public class EmployeeTable extends javax.swing.JFrame {
         return; // Stop execution if no row is selected
     }
 
-    // Show a confirmation dialog before deleting the employee
+    // Ask for confirmation before deleting the employee
     int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this employee?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
     if (confirm != JOptionPane.YES_OPTION) {
-        return; // Cancel deletion if user chooses "No"
+        return; // Cancel deletion if the user selects "No"
     }
 
     // Retrieve Employee Number of the selected row
     String empNumToDelete = jTableEmpTable.getValueAt(selectedRow, 0).toString();
 
-    // Remove Employee from JTable visually
-    DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
-    model.removeRow(selectedRow); // Delete row from table
-
-    // Update the CSV file by removing the deleted employee entry
-    try {
-        File inputFile = new File("src/data/employee_info.csv"); // Locate employee data file
-        File tempFile = new File("src/data/temp_employee_info.csv"); // Create temporary file for updates
-
-        BufferedReader reader = new BufferedReader(new FileReader(inputFile)); // Read original CSV file
-        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));  // Write updates to a temporary file
-
+    // Load entire CSV file into an ArrayList for efficient data handling
+    ArrayList<String> employeeRecords = new ArrayList<>();
+    try (BufferedReader reader = new BufferedReader(new FileReader("src/data/employee_info.csv"))) {
         String line;
-        boolean skipHeader = true; // Ensures header row remains intact
-
         while ((line = reader.readLine()) != null) {
-            if (skipHeader) {
-                writer.write(line + "\n"); // Keep header row in the new file
-                skipHeader = false;
-                continue;
-            }
-
-            // Write only non-deleted employee records to the new file
-            if (!line.startsWith(empNumToDelete + ",")) {
-                writer.write(line + "\n"); 
+            // Add all employee records to the list except the one being deleted
+            if (!line.startsWith(empNumToDelete + ",")) { 
+                employeeRecords.add(line);
             }
         }
-
-        // Close file streams after processing
-        reader.close();
-        writer.close();
-
-        // Replace old CSV file with updated records
-        if (inputFile.delete()) { 
-            tempFile.renameTo(inputFile); // Rename temp file to original file name
-        } else {
-            JOptionPane.showMessageDialog(this, "Error deleting employee.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
     } catch (IOException e) {
         e.printStackTrace(); // Print error details for debugging
-        JOptionPane.showMessageDialog(this, "Error deleting employee.", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Error loading employee data.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
     }
 
-    // Show confirmation dialog after successful deletion
+    // Write the updated employee list back to the CSV file in a single operation
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/employee_info.csv"))) {
+        for (String record : employeeRecords) {
+            writer.write(record + "\n"); // Write each remaining record to the file
+        }
+    } catch (IOException e) {
+        e.printStackTrace(); // Print error details for debugging
+        JOptionPane.showMessageDialog(this, "Error updating employee data.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Remove employee from JTable visually
+    DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
+    model.removeRow(selectedRow); // Delete row from table view
+
+    // Notify the user that deletion was successful
     JOptionPane.showMessageDialog(this, "Employee deleted successfully!");
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 

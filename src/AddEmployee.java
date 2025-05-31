@@ -1,65 +1,45 @@
-import java.io.BufferedWriter;   // Allows writing data to a file efficiently
-import java.io.FileWriter;       // Enables appending new employee data to the CSV
-import java.io.PrintWriter;      // Used to format and write data to the CSV file
-import javax.swing.JOptionPane;  // Displays error and success messages to the user
-import java.io.File;             // Represents the employee CSV file
-import java.io.BufferedReader;   // Reads data from the CSV file
-import java.io.FileReader;       // Reads file contents line by line
-import java.io.IOException;      // Handles file-related errors (reading/writing issues)
-import java.util.ArrayList;      // Provides dynamic lists that allow easy data manipulation
+// Required imports for GUI dialogs and list management.
+import javax.swing.JOptionPane; // Enables pop-up dialogs for error handling.
+import java.util.List;  // Allows List usage for storing employees.
+import java.util.ArrayList;  // Implements ArrayList for employee data.
 
 /**
- * `AddEmployee` class allows users to add new employee records.
- * It ensures Employee Numbers auto-increment and prevents manual edits.
+ * `AddEmployee` class provides a GUI for adding new employee records.
+ * Ensures that Employee Numbers auto-increment and prevents manual edits.
  */
 public class AddEmployee extends javax.swing.JFrame {
 
     /**
      * Constructor - Initializes the AddEmployee form.
-     * Calls `generateNextEmpNum()` to auto-set the Employee Number.
+     * Automatically generates the next Employee Number and disables manual editing.
      */
     public AddEmployee() {
-        initComponents(); // Initializes UI components
-        generateNextEmpNum(); // Auto-set Employee Number when the form opens
+        initComponents(); // Initializes UI components (NetBeans auto-generated function).
+        generateNextEmpNum(); // Auto-set Employee Number when the form opens.
 
-        // Ensure Employee Number field is uneditable and visually locked
-        jTxtEmpNum.setEditable(false); // Prevent typing
-        jTxtEmpNum.setFocusable(false); // Prevent cursor focus (extra safeguard)
-        jTxtEmpNum.setBackground(java.awt.Color.LIGHT_GRAY); // Gray out for clarity
+        // Prevent manual entry in Employee Number field.
+        jTxtEmpNum.setEditable(false); // Blocks typing in the field.
+        jTxtEmpNum.setFocusable(false); // Prevents cursor focus (extra safeguard).
+        jTxtEmpNum.setBackground(java.awt.Color.LIGHT_GRAY); // Visually locks the field using a gray background.
     }
-    
+
     /**
-     * Reads the last Employee Number from the CSV file and increments it by 1.
-     * Ensures a new Employee Number is assigned automatically.
+     * Generates the next available Employee Number automatically.
+     * Uses `EmployeeFileHandler` to retrieve existing employee records.
+     * Ensures the Employee ID is sequentially assigned without duplication.
      */
     private void generateNextEmpNum() {
-        try {
-            File inputFile = new File("src/data/employee_info.csv"); // Locate CSV file
-            BufferedReader reader = new BufferedReader(new FileReader(inputFile)); // Read the file
-            
-            String lastLine = "", line;
-            while ((line = reader.readLine()) != null) {
-                lastLine = line; // Store last valid employee entry
-            }
-            reader.close(); // Close file reader after reading
+        List<Employee> employees = EmployeeFileHandler.loadEmployees(); // Loads existing employee records.
+        
+        // Determines the next Employee Number:
+        // - If no employees exist, start from 10001.
+        // - Otherwise, find the highest Employee Number and increment by 1.
+        int newEmpNum = employees.isEmpty() ? 10001 : employees.stream()
+                           .mapToInt(Employee::getEmployeeNumber) // Extracts Employee Numbers.
+                           .max().orElse(10000) + 1; // Finds max Employee Number and adds 1.
 
-            // Extract last Employee Number and increment it
-            int newEmpNum = 10001; // Default if CSV is empty
-            if (!lastLine.isEmpty()) {
-                String[] data = lastLine.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // Correctly split CSV data
-                if (data.length > 0) {
-                    newEmpNum = Integer.parseInt(data[0].trim()) + 1; // Auto-increment Employee ID
-                }
-            }
-
-            // Set the new Employee Number and disable manual editing
-            jTxtEmpNum.setText(String.valueOf(newEmpNum));
-            jTxtEmpNum.setEditable(false); // Prevent manual edits
-
-        } catch (IOException e) {
-            e.printStackTrace(); // Print error details for debugging
-            JOptionPane.showMessageDialog(this, "Error generating Employee Number!", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        jTxtEmpNum.setText(String.valueOf(newEmpNum)); // Displays the auto-generated Employee Number.
+        jTxtEmpNum.setEditable(false); // Ensures field remains uneditable.
     }
 
 
@@ -338,75 +318,38 @@ public class AddEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextSSSActionPerformed
 
     private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
-    // Handles adding a new employee when the "Submit" button is clicked
+     // Retrieve employee details from form input fields
+        String lastName = jTxtLastName.getText().trim();
+        String firstName = jTxtFirstName.getText().trim();
+        String phoneNumber = jTxtPhoneNumber.getText().trim();
+        String status = jTxtStatus.getText().trim();
+        String position = jTxtPosition.getText().trim();
+        String supervisor = "NA"; // Adjust this for actual supervisor input
 
-    // Retrieve employee details from form input fields
-    String lastName = jTxtLastName.getText().trim();
-    String firstName = jTxtFirstName.getText().trim();
-    String phoneNumber = jTxtPhoneNumber.getText().trim();
-    String status = jTxtStatus.getText().trim();
-    String position = jTxtPosition.getText().trim();
-    String sss = jTextSSS.getText().trim();
-    String pagibig = jTextPAGIBIG.getText().trim();
-    String philhealth = jTextPHILHEALTH.getText().trim();
-    String tin = jTextTIN.getText().trim();
-    String supervisor = "NA"; // Adjust this for actual supervisor input
-
-    // Validate required fields before saving
-    if (lastName.isEmpty() || firstName.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Last Name and First Name are required!", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // Load all employee records into an ArrayList for efficient modifications
-    ArrayList<String> employeeRecords = new ArrayList<>();
-    int newEmpNum = 10001; // Default if CSV is empty
-    try (BufferedReader reader = new BufferedReader(new FileReader("src/data/employee_info.csv"))) {
-        String line;
-        while ((line = reader.readLine()) != null) {
-            employeeRecords.add(line); // Store each employee record in memory
+        // Validate required fields before saving
+        if (lastName.isEmpty() || firstName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Last Name and First Name are required!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
-        // Get the last Employee Number and auto-increment it
-        if (!employeeRecords.isEmpty()) {
-            String lastLine = employeeRecords.get(employeeRecords.size() - 1); // Get last entry
-            String[] lastData = lastLine.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-            newEmpNum = Integer.parseInt(lastData[0].trim()) + 1;
+        // Get next available Employee Number
+        int newEmpNum = Integer.parseInt(jTxtEmpNum.getText());
+
+        // Create an Employee object
+        Employee newEmployee = new Employee(newEmpNum, lastName, firstName, phoneNumber, status, position, supervisor);
+
+        // Save the new Employee using EmployeeFileHandler
+        EmployeeFileHandler.saveEmployee(newEmployee);
+
+        JOptionPane.showMessageDialog(this, "Employee added successfully!");
+
+        // Refresh the table view to reflect new entries
+        if (EmployeeTable.getInstance() != null) {
+            EmployeeTable.getInstance().refreshEmployeeTable(); 
         }
-    } catch (IOException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error loading employee data!", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
 
-    // Create the new employee entry
-    String newEmployeeEntry = String.join(",", 
-        String.valueOf(newEmpNum), lastName, firstName, phoneNumber, status, position, supervisor, sss, pagibig, philhealth, tin
-    );
-
-    // Add the new employee entry to the list
-    employeeRecords.add(newEmployeeEntry);
-
-    // Write the updated employee records back to the CSV file in a single operation
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/employee_info.csv"))) {
-        for (String record : employeeRecords) {
-            writer.write(record + "\n"); // Write each updated record to the file
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error saving employee data!", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    JOptionPane.showMessageDialog(this, "Employee added successfully!");
-
-    // Refresh the table view to reflect new entries
-    if (EmployeeTable.getInstance() != null) {
-        EmployeeTable.getInstance().refreshEmployeeTable(); 
-    }
-
-    // Close the form after successful submission
-    dispose();
+        // Close the form after successful submission
+        dispose();
 
     }//GEN-LAST:event_jButtonSubmitActionPerformed
 

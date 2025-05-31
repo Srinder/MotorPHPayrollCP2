@@ -292,8 +292,6 @@ public class EmployeeTable extends javax.swing.JFrame {
     // Assign the Employee Number from the selected row
     this.selectedEmpNum = jTableEmpTable.getValueAt(selectedRow, 0).toString().trim();
 
-    // Debugging output to verify selected employee number
-    System.out.println("DEBUG: selectedEmpNum before passing -> " + this.selectedEmpNum);
 
     // Validate that `selectedEmpNum` is not null or empty
     if (this.selectedEmpNum == null || this.selectedEmpNum.isEmpty()) {

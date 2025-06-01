@@ -258,6 +258,7 @@ public class AddEmployee extends javax.swing.JFrame {
         String position = jTxtPosition.getText().trim().isEmpty() ? "NA" : jTxtPosition.getText().trim();
         String supervisor = "NA"; // No supervisor input field, defaulting to "NA"
         String address = "NA"; // Default placeholder for missing address
+        String birthday = "NA";
 
         // Convert SSS, PAGIBIG, PHILHEALTH, TIN to integers, handling empty fields
         int sssNumber = jTextSSS.getText().trim().isEmpty() ? 0 : Integer.parseInt(jTextSSS.getText().trim());
@@ -282,10 +283,12 @@ public class AddEmployee extends javax.swing.JFrame {
 
         // Create Employee object with corrected integer ID fields
         Employee newEmployee = new Employee(empNum, lastName, firstName, phoneNumber, status, position, supervisor,
-            address, String.valueOf(sssNumber), String.valueOf(philHealthNumber), 
-         String.valueOf(tinNumber), String.valueOf(pagIbigNumber), 
-         basicSalary, riceSubsidy, phoneAllowance, clothingAllowance, 
-        grossSemiMonthlyRate, hourlyRate, withholdingTax);
+    address, birthday, String.valueOf(sssNumber), String.valueOf(philHealthNumber), 
+    String.valueOf(tinNumber), String.valueOf(pagIbigNumber), 
+    basicSalary, riceSubsidy, phoneAllowance, clothingAllowance, 
+    grossSemiMonthlyRate, hourlyRate, withholdingTax);
+
+;
 
 
         // Save employee record via EmployeeFileHandler

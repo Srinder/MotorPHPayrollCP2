@@ -24,35 +24,37 @@ public class Employee {
     private double grossSemiMonthlyRate;
     private double hourlyRate;
     private double withholdingTax;
+    private String birthday;
 
     /**
      * Constructor initializes an Employee object with all attributes.
      */
     public Employee(int employeeNumber, String lastName, String firstName, String phoneNumber, String status, String position, String supervisor,
-                    String address, String sssNumber, String philHealthNumber, String tinNumber, String pagIbigNumber,
-                    double basicSalary, double riceSubsidy, double phoneAllowance, double clothingAllowance,
-                    double grossSemiMonthlyRate, double hourlyRate, double withholdingTax) {
-        
-        this.employeeNumber = employeeNumber;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.phoneNumber = phoneNumber;
-        this.status = status;
-        this.position = position;
-        this.supervisor = supervisor;
-        this.address = address;
-        this.sssNumber = sssNumber;
-        this.philHealthNumber = philHealthNumber;
-        this.tinNumber = tinNumber;
-        this.pagIbigNumber = pagIbigNumber;
-        this.basicSalary = basicSalary;
-        this.riceSubsidy = riceSubsidy;
-        this.phoneAllowance = phoneAllowance;
-        this.clothingAllowance = clothingAllowance;
-        this.grossSemiMonthlyRate = grossSemiMonthlyRate;
-        this.hourlyRate = hourlyRate;
-        this.withholdingTax = withholdingTax;
-    }
+                String address, String birthday, String sssNumber, String philHealthNumber, String tinNumber, String pagIbigNumber,
+                double basicSalary, double riceSubsidy, double phoneAllowance, double clothingAllowance,
+                double grossSemiMonthlyRate, double hourlyRate, double withholdingTax) {
+    
+    this.employeeNumber = employeeNumber;
+    this.lastName = lastName;
+    this.firstName = firstName;
+    this.phoneNumber = phoneNumber;
+    this.status = status;
+    this.position = position;
+    this.supervisor = supervisor;
+    this.address = address;
+    this.birthday = birthday;
+    this.sssNumber = sssNumber;
+    this.philHealthNumber = philHealthNumber;
+    this.tinNumber = tinNumber;
+    this.pagIbigNumber = pagIbigNumber;
+    this.basicSalary = basicSalary;
+    this.riceSubsidy = riceSubsidy;
+    this.phoneAllowance = phoneAllowance;
+    this.clothingAllowance = clothingAllowance;
+    this.grossSemiMonthlyRate = grossSemiMonthlyRate;
+    this.hourlyRate = hourlyRate;
+    this.withholdingTax = withholdingTax;
+}
 
     // Getter Methods
     public int getEmployeeNumber() { return employeeNumber; }
@@ -74,6 +76,7 @@ public class Employee {
     public double getGrossSemiMonthlyRate() { return grossSemiMonthlyRate; }
     public double getHourlyRate() { return hourlyRate; }
     public double getWithholdingTax() { return withholdingTax; }
+    public String getBirthday() { return birthday; }
 
     // Setter Methods
     public void setEmployeeNumber(int employeeNumber) { this.employeeNumber = employeeNumber; }
@@ -95,6 +98,7 @@ public class Employee {
     public void setGrossSemiMonthlyRate(double grossSemiMonthlyRate) { this.grossSemiMonthlyRate = grossSemiMonthlyRate; }
     public void setHourlyRate(double hourlyRate) { this.hourlyRate = hourlyRate; }
     public void setWithholdingTax(double withholdingTax) { this.withholdingTax = withholdingTax; }
+    public void setBirthday(String birthday) { this.birthday = birthday; }
 
     /**
      * Overridden toString() method provides a readable representation of the employee object.

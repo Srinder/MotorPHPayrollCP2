@@ -42,27 +42,39 @@ public class EditEmpInfo extends javax.swing.JFrame {
      * @param empNum The Employee Number to fetch.
      */
     private void loadEmployeeData(int empNum) {
-        List<Employee> employees = EmployeeFileHandler.loadEmployees();  // Retrieves all employee records.
-        
-        // Searches for the employee matching the given Employee Number.
-        Optional<Employee> employeeOpt = employees.stream()
-            .filter(emp -> emp.getEmployeeNumber() == empNum)  // Filters employees by Employee Number.
-            .findFirst();  // Retrieves the first matching employee, if found.
+    List<Employee> employees = EmployeeFileHandler.loadEmployees();  // Retrieve all employee records.
 
-        if (employeeOpt.isPresent()) {
-            employeeData = employeeOpt.get();  // Stores the retrieved Employee object.
+    Optional<Employee> employeeOpt = employees.stream()
+        .filter(emp -> emp.getEmployeeNumber() == empNum)  // Find matching employee
+        .findFirst();  
 
-            // Populates UI fields with employee details.
-            Name.setText(employeeData.getLastName() + ", " + employeeData.getFirstName());
-            Position.setText(employeeData.getPosition());
-            PhoneNum.setText(employeeData.getPhoneNumber());
-            Status.setText(employeeData.getStatus());
-            ImmSup.setText(employeeData.getSupervisor());
-        } else {
-            // Shows an error message if the Employee Number is not found.
-            JOptionPane.showMessageDialog(this, "Error: Employee data not found!", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    if (employeeOpt.isPresent()) {
+        employeeData = employeeOpt.get();  // Store retrieved employee data
+
+        // Correct UI field mapping according to updated column order
+        Name.setText(employeeData.getLastName() + ", " + employeeData.getFirstName());
+        Position.setText(employeeData.getPosition());
+        PhoneNum.setText(employeeData.getPhoneNumber());
+        Status.setText(employeeData.getStatus());
+        ImmSup.setText(employeeData.getSupervisor());
+        Address.setText(employeeData.getAddress());
+        SSS.setText(employeeData.getSssNumber());
+        PHILHEALTH.setText(employeeData.getPhilHealthNumber());
+        TIN.setText(employeeData.getTinNumber());
+        PAGIBIG.setText(employeeData.getPagIbigNumber());
+        Salary.setText(String.valueOf(employeeData.getBasicSalary()));
+        Rice.setText(String.valueOf(employeeData.getRiceSubsidy()));
+        PhoneAll.setText(String.valueOf(employeeData.getPhoneAllowance()));
+        ClothAll.setText(String.valueOf(employeeData.getClothingAllowance()));
+        Hourly.setText(String.valueOf(employeeData.getHourlyRate()));
+        Birthday.setText(employeeData.getBirthday()); // Birthday must be placed last!
+
+    } else {
+        JOptionPane.showMessageDialog(this, "Error: Employee data not found!", "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
+
+
 
     /**
      * Disables editing when in read-only mode.
@@ -475,34 +487,39 @@ public class EditEmpInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_EditActionPerformed
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
-    // Handles saving updated employee details
-
     if (employeeData == null) {
         JOptionPane.showMessageDialog(this, "Error: No employee data loaded!", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
-    // Update employee details using form inputs
-   // Update employee details using form inputs
-    employeeData.setLastName(Name.getText().trim()); //  Ensure only Last Name is set
-    employeeData.setFirstName(FirstName.getText().trim()); //  Ensure only First Name is set
+    // Update all fields from form inputs
+    employeeData.setLastName(Name.getText().trim());
+    employeeData.setFirstName(FirstName.getText().trim());
     employeeData.setPosition(Position.getText().trim());
     employeeData.setPhoneNumber(PhoneNum.getText().trim());
     employeeData.setStatus(Status.getText().trim());
     employeeData.setSupervisor(ImmSup.getText().trim());
+    employeeData.setAddress(Address.getText().trim());
+    employeeData.setBirthday(Birthday.getText().trim());
+    employeeData.setSssNumber(SSS.getText().trim());
+    employeeData.setPhilHealthNumber(PHILHEALTH.getText().trim());
+    employeeData.setTinNumber(TIN.getText().trim());
+    employeeData.setPagIbigNumber(PAGIBIG.getText().trim());
+    employeeData.setBasicSalary(Double.parseDouble(Salary.getText().trim()));
+    employeeData.setHourlyRate(Double.parseDouble(Hourly.getText().trim()));
+    employeeData.setPhoneAllowance(Double.parseDouble(PhoneAll.getText().trim()));
+    employeeData.setClothingAllowance(Double.parseDouble(ClothAll.getText().trim()));
+    employeeData.setRiceSubsidy(Double.parseDouble(Rice.getText().trim()));
 
-
-    // Save the updated employee using EmployeeFileHandler
+    // Save updated employee data
     EmployeeFileHandler.updateEmployee(employeeData);
-
     JOptionPane.showMessageDialog(this, "Employee record updated successfully!");
 
-    // Refresh the table view to reflect changes
+    // Refresh table and close
     if (EmployeeTable.getInstance() != null) {
-        EmployeeTable.getInstance().refreshEmployeeTable(); 
+        EmployeeTable.getInstance().refreshEmployeeTable();
     }
 
-    // Close editing mode after saving
     setFieldsEditable(false); 
     dispose(); 
     }//GEN-LAST:event_SaveActionPerformed

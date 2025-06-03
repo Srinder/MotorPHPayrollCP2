@@ -79,35 +79,66 @@ public class EmployeeTable extends javax.swing.JFrame {
      * Loads employee data from the CSV file and populates the table dynamically.
      */
     private void loadEmployeeData() {
-        DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
-        model.setRowCount(0);  // Clears existing rows.
+    DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
+    model.setRowCount(0);  // ✅ Clears old table data before reloading
 
-        List<Employee> employees = EmployeeFileHandler.loadEmployees();  // Fetches structured employee objects.
+    List<Employee> employees = EmployeeFileHandler.loadEmployees();  // ✅ Load employees from CSV
 
-        if (employees.isEmpty()) {
-            System.out.println("No employees found! Check CSV formatting.");
-        } else {
-            for (Employee emp : employees) {
- 
-                model.addRow(new Object[]{ 
-                    emp.getEmployeeNumber(), emp.getLastName(), emp.getFirstName(), 
-                    emp.getPhoneNumber(), emp.getStatus(), emp.getPosition(), emp.getSupervisor()  // Excluding Birthday
-                });
-            }
+    if (employees == null || employees.isEmpty()) {  // ✅ Avoid NullPointerException
+        System.out.println("No employees found! Check CSV formatting or reload process.");
+        JOptionPane.showMessageDialog(this, "Error: Employee data failed to load!", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+        for (Employee emp : employees) {
+            model.addRow(new Object[]{ 
+                emp.getEmployeeNumber(), emp.getLastName(), emp.getFirstName(), 
+                emp.getPhoneNumber(),  // ✅ Use raw CSV data without extra formatting
+                emp.getStatus(), emp.getPosition(), emp.getSupervisor()  
+            });
         }
     }
+}
+
+    
+    private String formatIDLive(String input) {
+    StringBuilder formatted = new StringBuilder();
+    for (int i = 0; i < input.length(); i++) {  // ✅ Fix loop declaration
+        formatted.append(input.charAt(i));
+        if ((i + 1) % 3 == 0 && i + 1 < input.length()) {  // ✅ Ensure condition is correctly formed
+            formatted.append("-");
+        }
+    }
+    return formatted.toString();
+}
+
+
+
 
     /**
      * Refreshes the EmployeeTable dynamically to reflect the latest employee records.
      * Clears and reloads table data to maintain accuracy.
      */
     public void refreshEmployeeTable() {
-        if (instance != null) {
-            DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
-            model.setRowCount(0);  // Clears previous records.
-            loadEmployeeData();  // Reloads fresh data from CSV file.
+    if (instance != null) {
+        DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
+        model.setRowCount(0);  // ✅ Clears previous records to prevent duplication
+
+        List<Employee> employees = EmployeeFileHandler.loadEmployees();  // ✅ Reload fresh employee data
+
+        if (employees.isEmpty()) {
+            System.err.println("WARNING: Employee list is empty after refresh!");
+        } else {
+            System.out.println("Employee list successfully refreshed. Total employees: " + employees.size());
+        }
+
+        for (Employee emp : employees) {
+            model.addRow(new Object[]{ 
+                emp.getEmployeeNumber(), emp.getLastName(), emp.getFirstName(), 
+                emp.getPhoneNumber(), emp.getStatus(), emp.getPosition(), emp.getSupervisor()
+            });
         }
     }
+}
+
 
     /**
      * Adjusts table settings, including column width and text alignment.

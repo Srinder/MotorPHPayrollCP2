@@ -248,7 +248,7 @@ public class AddEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextSSSActionPerformed
 
     private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
-         try {
+        try {
         // Retrieve entered data, ensuring required fields are valid
         int empNum = Integer.parseInt(jTxtEmpNum.getText().trim());
         String lastName = jTxtLastName.getText().trim();
@@ -283,10 +283,11 @@ public class AddEmployee extends javax.swing.JFrame {
 
         // Create Employee object with corrected integer ID fields
         Employee newEmployee = new Employee(empNum, lastName, firstName, phoneNumber, status, position, supervisor,
-    address, birthday, String.valueOf(sssNumber), String.valueOf(philHealthNumber), 
+    address, String.valueOf(sssNumber), String.valueOf(philHealthNumber), 
     String.valueOf(tinNumber), String.valueOf(pagIbigNumber), 
     basicSalary, riceSubsidy, phoneAllowance, clothingAllowance, 
-    grossSemiMonthlyRate, hourlyRate, withholdingTax);
+    grossSemiMonthlyRate, hourlyRate, withholdingTax, birthday); // Birthday MUST be last
+
 
 ;
 
@@ -310,6 +311,7 @@ public class AddEmployee extends javax.swing.JFrame {
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Error: Invalid input! Ensure numeric values are entered correctly.", "Input Error", JOptionPane.ERROR_MESSAGE);
     }
+
     }//GEN-LAST:event_jButtonSubmitActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed

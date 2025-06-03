@@ -3,8 +3,6 @@
  * Stores employee details such as employee number, name, phone number, status, position, supervisor, salary, and allowances.
  */
 public class Employee {
-
-    // Private variables to store employee details (Encapsulation principle)
     private int employeeNumber;
     private String lastName;
     private String firstName;
@@ -24,16 +22,14 @@ public class Employee {
     private double grossSemiMonthlyRate;
     private double hourlyRate;
     private double withholdingTax;
-    private String birthday;
-
+    private String birthday; //
     /**
      * Constructor initializes an Employee object with all attributes.
      */
     public Employee(int employeeNumber, String lastName, String firstName, String phoneNumber, String status, String position, String supervisor,
-                String address, String birthday, String sssNumber, String philHealthNumber, String tinNumber, String pagIbigNumber,
-                double basicSalary, double riceSubsidy, double phoneAllowance, double clothingAllowance,
-                double grossSemiMonthlyRate, double hourlyRate, double withholdingTax) {
-    
+                String address, String sssNumber, String philHealthNumber, String tinNumber, String pagIbigNumber, 
+                double basicSalary, double riceSubsidy, double phoneAllowance, double clothingAllowance, 
+                double grossSemiMonthlyRate, double hourlyRate, double withholdingTax, String birthday) {
     this.employeeNumber = employeeNumber;
     this.lastName = lastName;
     this.firstName = firstName;
@@ -42,7 +38,6 @@ public class Employee {
     this.position = position;
     this.supervisor = supervisor;
     this.address = address;
-    this.birthday = birthday;
     this.sssNumber = sssNumber;
     this.philHealthNumber = philHealthNumber;
     this.tinNumber = tinNumber;
@@ -54,7 +49,9 @@ public class Employee {
     this.grossSemiMonthlyRate = grossSemiMonthlyRate;
     this.hourlyRate = hourlyRate;
     this.withholdingTax = withholdingTax;
+    this.birthday = birthday; // Ensure Birthday is last
 }
+
 
     // Getter Methods
     public int getEmployeeNumber() { return employeeNumber; }

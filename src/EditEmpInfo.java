@@ -5,6 +5,7 @@ import java.util.Optional;            // Allows efficient employee lookup.
 import javax.swing.JTextField;        // Allows user input in text fields.
 import java.awt.event.KeyAdapter;  // Handles key events for real-time formatting
 import java.awt.event.KeyEvent;    // Detects individual key presses
+import java.util.HashSet;
 
 /**
  * `EditEmpInfo` class enables users to view and modify employee details.
@@ -61,7 +62,8 @@ public class EditEmpInfo extends javax.swing.JFrame {
         employeeData = employeeOpt.get();  // Store retrieved employee data
 
         // ✅ Use CSV data directly without reformatting
-        Name.setText(employeeData.getLastName() + ", " + employeeData.getFirstName());
+        txtLname.setText(employeeData.getLastName());
+        Name.setText(employeeData.getLastName() +" " +employeeData.getFirstName() );
         Position.setText(employeeData.getPosition());
         PhoneNum.setText(employeeData.getPhoneNumber());  // ✅ Display raw CSV data
         Status.setText(employeeData.getStatus());
@@ -194,6 +196,7 @@ public class EditEmpInfo extends javax.swing.JFrame {
         Position = new javax.swing.JTextField();
         Status = new javax.swing.JTextField();
         textLogo = new javax.swing.JLabel();
+        txtLname = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         SSSname = new javax.swing.JLabel();
         PAGIBIGname = new javax.swing.JLabel();
@@ -281,6 +284,10 @@ public class EditEmpInfo extends javax.swing.JFrame {
         textLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textLogo.setText("MotorPH");
 
+        txtLname.setText("jTextField1");
+        txtLname.setEnabled(false);
+        txtLname.setFocusable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -307,6 +314,10 @@ public class EditEmpInfo extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addComponent(txtLname, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,6 +330,8 @@ public class EditEmpInfo extends javax.swing.JFrame {
                 .addComponent(Position, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtLname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(textLogo)
                 .addGap(15, 15, 15))
@@ -540,14 +553,14 @@ public class EditEmpInfo extends javax.swing.JFrame {
 
     try {
         // ✅ Preserve Last Name correctly
-        employeeData.setLastName(Name.getText().trim().isEmpty() ? employeeData.getLastName() : Name.getText().trim());
+        employeeData.setLastName(txtLname.getText().trim().isEmpty() ? employeeData.getLastName() : txtLname.getText().trim());
 
         // ✅ Ensure First Name updates only if modified and prevent duplication
         String firstNameInput = FirstName.getText().trim();
         if (!firstNameInput.equalsIgnoreCase(employeeData.getFirstName()) && !firstNameInput.isEmpty()) {
             employeeData.setFirstName(firstNameInput);
         }
-
+          System.out.println(firstNameInput);
         // ✅ Handle other text fields correctly
         employeeData.setPosition(Position.getText().trim().isEmpty() ? employeeData.getPosition() : Position.getText().trim());
         employeeData.setPhoneNumber(PhoneNum.getText().trim().isEmpty() ? employeeData.getPhoneNumber() : PhoneNum.getText().trim());
@@ -666,7 +679,7 @@ private double parseDouble(String value, double currentValue) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 String selectedEmpNum = null;
-       
+          
                 new EditEmpInfo(Integer.parseInt(selectedEmpNum), true).setVisible(true);
             }
         });
@@ -711,5 +724,6 @@ private double parseDouble(String value, double currentValue) {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel textLogo;
+    private javax.swing.JTextField txtLname;
     // End of variables declaration//GEN-END:variables
 }

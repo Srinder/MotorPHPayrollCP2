@@ -1,32 +1,26 @@
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 import java.io.*;
 import java.util.*;
-import javax.swing.JOptionPane;
 
-/**
- * EmployeeFileHandler - Manages employee data stored in a CSV file.
- * Provides methods to load, save, update, and delete employee records in a structured format.
- */
 public class EmployeeFileHandler {
-    private static final String FILE_PATH = "src/data/employee_info.csv"; // Path to the employee data file.
+    private static final String FILE_PATH = "src/data/employee_info.csv"; // Path to the CSV file
 
     /**
-     * Loads all employees from the CSV file into a List.
-     * Parses each row and creates Employee objects.
+     * Loads all employees from the CSV file into a List using OpenCSV.
      *
-     * @return List<Employee> - A list of employees retrieved from the file.
+     * @return List<Employee> - A list of employees retrieved from the CSV file.
      */
     public static List<Employee> loadEmployees() {
         List<Employee> employees = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            String line;
+        try (CSVReader reader = new CSVReader(new FileReader(FILE_PATH))) {
+            List<String[]> records = reader.readAll();
             boolean skipHeader = true;
 
-            while ((line = reader.readLine()) != null) {
+            for (String[] rowData : records) {
                 if (skipHeader) { skipHeader = false; continue; }
-                if (line.trim().isEmpty()) continue;
 
-                String[] rowData = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                 if (rowData.length < 20) {
                     System.err.println("Skipping invalid employee entry (Incorrect column count): " + Arrays.toString(rowData));
                     continue;
@@ -40,16 +34,14 @@ public class EmployeeFileHandler {
                     String status = rowData[4].trim();
                     String position = rowData[5].trim();
                     String supervisor = rowData[6].trim();
-                    String address = rowData[7].trim().replaceAll("^\"|\"$", "");
-                    
-                    // Handle optional fields with NA default
+                    String address = rowData[7].trim();
+
                     String sssNumber = rowData[8].trim().isEmpty() ? "NA" : rowData[8].trim();
                     String philHealthNumber = rowData[9].trim().isEmpty() ? "NA" : rowData[9].trim();
                     String tinNumber = rowData[10].trim().isEmpty() ? "NA" : rowData[10].trim();
                     String pagIbigNumber = rowData[11].trim().isEmpty() ? "NA" : rowData[11].trim();
                     String birthday = rowData[19].trim().isEmpty() ? "NA" : rowData[19].trim();
 
-                    // Parse numeric fields
                     double basicSalary = parseDouble(rowData[12]);
                     double riceSubsidy = parseDouble(rowData[13]);
                     double phoneAllowance = parseDouble(rowData[14]);
@@ -67,39 +59,26 @@ public class EmployeeFileHandler {
                     System.err.println("Skipping invalid employee entry (Number format issue): " + Arrays.toString(rowData));
                 }
             }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error: Unable to load employee data!", "File Read Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return employees;
     }
 
     /**
-     * Safely parses a double value, returning 0.0 if the input is invalid or empty.
-     */
-    private static double parseDouble(String value) {
-        try {
-            return value.trim().isEmpty() ? 0.0 : Double.parseDouble(value.trim());
-        } catch (NumberFormatException e) {
-            return 0.0;
-        }
-    }
-
-    /**
-     * Saves a new employee record to the CSV file.
-     *
-     * @param employee - The employee object to save.
+     * Saves a new employee record to the CSV file using OpenCSV.
      */
     public static void saveEmployee(Employee employee) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
-            writer.write(formatEmployeeData(employee) + "\n");
+        try (CSVWriter writer = new CSVWriter(new FileWriter(FILE_PATH, true))) {
+            writer.writeNext(formatEmployeeData(employee));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * Deletes an employee record based on the given employee number.
+     * Deletes an employee record based on the given employee number using OpenCSV.
      */
     public static void deleteEmployee(int empNum) {
         List<Employee> employees = loadEmployees();
@@ -108,58 +87,49 @@ public class EmployeeFileHandler {
     }
 
     /**
-     * Updates an existing employee's information.
+     * Updates an existing employee's information using OpenCSV.
      */
     public static void updateEmployee(Employee updatedEmployee) {
-    List<Employee> employees = loadEmployees();
-    boolean employeeFound = false;
+        List<Employee> employees = loadEmployees();
+        boolean employeeFound = false;
 
-    for (Employee emp : employees) {
-        if (emp.getEmployeeNumber() == updatedEmployee.getEmployeeNumber()) {
-            // ✅ Update ONLY the modified fields, keeping others unchanged
-            if (!updatedEmployee.getLastName().isEmpty()) emp.setLastName(updatedEmployee.getLastName());
-            if (!updatedEmployee.getFirstName().isEmpty()) emp.setFirstName(updatedEmployee.getFirstName());
-            if (!updatedEmployee.getPhoneNumber().isEmpty()) emp.setPhoneNumber(updatedEmployee.getPhoneNumber());
-            if (!updatedEmployee.getStatus().isEmpty()) emp.setStatus(updatedEmployee.getStatus());
-            if (!updatedEmployee.getPosition().isEmpty()) emp.setPosition(updatedEmployee.getPosition());
-            if (!updatedEmployee.getSupervisor().isEmpty()) emp.setSupervisor(updatedEmployee.getSupervisor());
-            if (!updatedEmployee.getAddress().isEmpty()) emp.setAddress(updatedEmployee.getAddress());
-            if (!updatedEmployee.getSssNumber().isEmpty()) emp.setSssNumber(updatedEmployee.getSssNumber());
-            if (!updatedEmployee.getPhilHealthNumber().isEmpty()) emp.setPhilHealthNumber(updatedEmployee.getPhilHealthNumber());
-            if (!updatedEmployee.getTinNumber().isEmpty()) emp.setTinNumber(updatedEmployee.getTinNumber());
-            if (!updatedEmployee.getPagIbigNumber().isEmpty()) emp.setPagIbigNumber(updatedEmployee.getPagIbigNumber());
-            if (updatedEmployee.getBasicSalary() > 0) emp.setBasicSalary(updatedEmployee.getBasicSalary());
-            if (updatedEmployee.getRiceSubsidy() > 0) emp.setRiceSubsidy(updatedEmployee.getRiceSubsidy());
-            if (updatedEmployee.getPhoneAllowance() > 0) emp.setPhoneAllowance(updatedEmployee.getPhoneAllowance());
-            if (updatedEmployee.getClothingAllowance() > 0) emp.setClothingAllowance(updatedEmployee.getClothingAllowance());
-            if (updatedEmployee.getGrossSemiMonthlyRate() > 0) emp.setGrossSemiMonthlyRate(updatedEmployee.getGrossSemiMonthlyRate());
-            if (updatedEmployee.getHourlyRate() > 0) emp.setHourlyRate(updatedEmployee.getHourlyRate());
-            if (updatedEmployee.getWithholdingTax() > 0) emp.setWithholdingTax(updatedEmployee.getWithholdingTax());
-            if (!updatedEmployee.getBirthday().isEmpty()) emp.setBirthday(updatedEmployee.getBirthday());
-
-            employeeFound = true;
-            break;
+        for (Employee emp : employees) {
+            if (emp.getEmployeeNumber() == updatedEmployee.getEmployeeNumber()) {
+                emp.setLastName(updatedEmployee.getLastName().trim().isEmpty() ? emp.getLastName() : updatedEmployee.getLastName().trim());
+                emp.setFirstName(updatedEmployee.getFirstName().trim().isEmpty() ? emp.getFirstName() : updatedEmployee.getFirstName().trim());
+                emp.setPhoneNumber(updatedEmployee.getPhoneNumber().trim().isEmpty() ? emp.getPhoneNumber() : updatedEmployee.getPhoneNumber().trim());
+                emp.setStatus(updatedEmployee.getStatus().trim().isEmpty() ? emp.getStatus() : updatedEmployee.getStatus().trim());
+                emp.setPosition(updatedEmployee.getPosition().trim().isEmpty() ? emp.getPosition() : updatedEmployee.getPosition().trim());
+                emp.setSupervisor(updatedEmployee.getSupervisor().trim().isEmpty() ? emp.getSupervisor() : updatedEmployee.getSupervisor().trim());
+                emp.setAddress(updatedEmployee.getAddress().trim().isEmpty() ? emp.getAddress() : updatedEmployee.getAddress().trim());
+                emp.setSssNumber(updatedEmployee.getSssNumber().trim().isEmpty() ? emp.getSssNumber() : updatedEmployee.getSssNumber().trim());
+                emp.setPhilHealthNumber(updatedEmployee.getPhilHealthNumber().trim().isEmpty() ? emp.getPhilHealthNumber() : updatedEmployee.getPhilHealthNumber().trim());
+                emp.setTinNumber(updatedEmployee.getTinNumber().trim().isEmpty() ? emp.getTinNumber() : updatedEmployee.getTinNumber().trim());
+                emp.setPagIbigNumber(updatedEmployee.getPagIbigNumber().trim().isEmpty() ? emp.getPagIbigNumber() : updatedEmployee.getPagIbigNumber().trim());
+                employeeFound = true;
+                break;
+            }
         }
+
+        if (!employeeFound) {
+            System.err.println("Error: Employee record not found!");
+            return;
+        }
+
+        writeEmployeeListToFile(employees);
     }
-
-    if (!employeeFound) {
-        System.err.println("Error: Employee record not found!");
-        return;
-    }
-
-    writeEmployeeListToFile(employees);  // ✅ Save data correctly without shifting columns
-}
-
 
     /**
-     * Writes the updated employee list back to the CSV file.
+     * Writes the updated employee list back to the CSV file using OpenCSV.
      */
     private static void writeEmployeeListToFile(List<Employee> employees) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
-            writer.write("EmpNum,LastName,FirstName,PhoneNumber,Status,Position,Supervisor,Address,SSS,PHILHEALTH,TIN,PAGIBIG,Basic Salary,Rice Subsidy,Phone Allowance,Clothing Allowance,Gross Semi-monthly Rate,Hourly Rate,Withholding Tax,Birthday\n");
+        try (CSVWriter writer = new CSVWriter(new FileWriter(FILE_PATH))) {
+            writer.writeNext(new String[]{"EmpNum", "LastName", "FirstName", "PhoneNumber", "Status", "Position", "Supervisor", "Address",
+                "SSS", "PHILHEALTH", "TIN", "PAGIBIG", "Basic Salary", "Rice Subsidy", "Phone Allowance",
+                "Clothing Allowance", "Gross Semi-monthly Rate", "Hourly Rate", "Withholding Tax", "Birthday"});
 
             for (Employee emp : employees) {
-                writer.write(formatEmployeeData(emp) + "\n");
+                writer.writeNext(formatEmployeeData(emp));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -167,31 +137,26 @@ public class EmployeeFileHandler {
     }
 
     /**
-     * Reloads employee data by fetching fresh records from the CSV.
-     * This ensures updated information is reflected when requested.
+     * Formats an employee object into a properly structured CSV row for OpenCSV.
      */
-    public static List<Employee> reloadEmployees() {
-        return loadEmployees();  // Simply calls loadEmployees() to refresh the data
+    private static String[] formatEmployeeData(Employee employee) {
+        return new String[]{String.valueOf(employee.getEmployeeNumber()), employee.getLastName(), employee.getFirstName(),
+            employee.getPhoneNumber(), employee.getStatus(), employee.getPosition(), employee.getSupervisor(), employee.getAddress(),
+            employee.getSssNumber(), employee.getPhilHealthNumber(), employee.getTinNumber(), employee.getPagIbigNumber(),
+            String.valueOf(employee.getBasicSalary()), String.valueOf(employee.getRiceSubsidy()), String.valueOf(employee.getPhoneAllowance()),
+            String.valueOf(employee.getClothingAllowance()), String.valueOf(employee.getGrossSemiMonthlyRate()),
+            String.valueOf(employee.getHourlyRate()), String.valueOf(employee.getWithholdingTax()), employee.getBirthday()};
     }
 
     /**
-     * Formats an employee object into a properly structured CSV row.
+     * Safely parses a double value, returning 0.0 if the input is invalid, empty, or "N/A".
      */
-    private static String formatEmployeeData(Employee employee) {
-    return String.join(",", 
-        String.valueOf(employee.getEmployeeNumber()), employee.getLastName(), employee.getFirstName(),
-        employee.getPhoneNumber().isEmpty() ? "N/A" : employee.getPhoneNumber(),  // ✅ Ensure Phone Number isn't blank
-        employee.getStatus(), employee.getPosition(), employee.getSupervisor(),
-        "\"" + employee.getAddress() + "\"",  // ✅ Wrap in quotes to prevent address splitting
-        employee.getSssNumber(), employee.getPhilHealthNumber(),
-        employee.getTinNumber(), employee.getPagIbigNumber(),
-        String.valueOf(employee.getBasicSalary() == 0.0 ? "N/A" : employee.getBasicSalary()),  // ✅ Prevent unexpected zeros
-        String.valueOf(employee.getRiceSubsidy()), String.valueOf(employee.getPhoneAllowance()),
-        String.valueOf(employee.getClothingAllowance()), String.valueOf(employee.getGrossSemiMonthlyRate()),
-        String.valueOf(employee.getHourlyRate()), String.valueOf(employee.getWithholdingTax()), employee.getBirthday()
-    );
-}
-
-
-
+    private static double parseDouble(String value) {
+        try {
+            return (value.trim().equalsIgnoreCase("N/A") || value.trim().isEmpty()) ? 0.0 : Double.parseDouble(value.trim());
+        } catch (NumberFormatException e) {
+            System.err.println("ERROR: Invalid number format detected: " + value);
+            return 0.0;
+        }
+    }
 }

@@ -6,7 +6,6 @@ import javax.swing.JTextField;        // Allows user input in text fields.
 import java.awt.event.KeyAdapter;  // Handles key events for real-time formatting
 import java.awt.event.KeyEvent;    // Detects individual key presses
 
-
 /**
  * `EditEmpInfo` class enables users to view and modify employee details.
  * It integrates with `EmployeeFileHandler` to ensure structured updates.
@@ -44,7 +43,6 @@ public class EditEmpInfo extends javax.swing.JFrame {
     addKeyListenerToField(TIN);
     addKeyListenerToField(PhoneNum);
 }
-
 
     /**
      * Loads employee details using `EmployeeFileHandler.loadEmployees()`.
@@ -84,10 +82,6 @@ public class EditEmpInfo extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Error: Employee data not found!", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
-
-
-
-
 
     /**
      * Disables editing when in read-only mode.
@@ -183,10 +177,6 @@ public class EditEmpInfo extends javax.swing.JFrame {
     }
     return formatted.toString().replaceAll("--", "-");  // ✅ Prevent double hyphens
 }
-
-
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -542,47 +532,46 @@ public class EditEmpInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_EditActionPerformed
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+                                    
     if (employeeData == null) {
         JOptionPane.showMessageDialog(this, "Error: No employee data loaded!", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
     try {
-        // ✅ Ensure fields are updated correctly
-        employeeData.setLastName(Name.getText().trim());
-        employeeData.setFirstName(FirstName.getText().trim());
-        employeeData.setPosition(Position.getText().trim());
-        employeeData.setPhoneNumber(PhoneNum.getText().trim());
-        employeeData.setStatus(Status.getText().trim());
-        employeeData.setSupervisor(ImmSup.getText().trim());
-        employeeData.setAddress(Address.getText().trim().replaceAll("^\"|\"$", ""));
-        employeeData.setBirthday(Birthday.getText().trim());
-        employeeData.setSssNumber(SSS.getText().trim());
-        employeeData.setPhilHealthNumber(PHILHEALTH.getText().trim());
-        employeeData.setTinNumber(TIN.getText().trim());
-        employeeData.setPagIbigNumber(PAGIBIG.getText().trim());
+        // ✅ Preserve Last Name correctly
+        employeeData.setLastName(Name.getText().trim().isEmpty() ? employeeData.getLastName() : Name.getText().trim());
 
-        // ✅ Parse numerical values safely
-        employeeData.setBasicSalary(parseDouble(Salary.getText().trim()));
-        employeeData.setHourlyRate(parseDouble(Hourly.getText().trim()));
-        employeeData.setPhoneAllowance(parseDouble(PhoneAll.getText().trim()));
-        employeeData.setClothingAllowance(parseDouble(ClothAll.getText().trim()));
-        employeeData.setRiceSubsidy(parseDouble(Rice.getText().trim()));
-
-        // ✅ Save updates to CSV with error-checking
-        EmployeeFileHandler.updateEmployee(employeeData);
-        
-        // ✅ Ensure ALL employees remain in the list after updating
-        List<Employee> employees = EmployeeFileHandler.loadEmployees();
-        if (employees.isEmpty()) {
-            System.err.println("WARNING: Employee list is empty after update!");
-        } else {
-            System.out.println("Employee list successfully updated. Total employees: " + employees.size());
+        // ✅ Ensure First Name updates only if modified and prevent duplication
+        String firstNameInput = FirstName.getText().trim();
+        if (!firstNameInput.equalsIgnoreCase(employeeData.getFirstName()) && !firstNameInput.isEmpty()) {
+            employeeData.setFirstName(firstNameInput);
         }
 
+        // ✅ Handle other text fields correctly
+        employeeData.setPosition(Position.getText().trim().isEmpty() ? employeeData.getPosition() : Position.getText().trim());
+        employeeData.setPhoneNumber(PhoneNum.getText().trim().isEmpty() ? employeeData.getPhoneNumber() : PhoneNum.getText().trim());
+        employeeData.setStatus(Status.getText().trim().isEmpty() ? employeeData.getStatus() : Status.getText().trim());
+        employeeData.setSupervisor(ImmSup.getText().trim().isEmpty() ? employeeData.getSupervisor() : ImmSup.getText().trim());
+        employeeData.setAddress(Address.getText().trim().isEmpty() ? employeeData.getAddress() : Address.getText().trim().replaceAll("^\"|\"$", ""));
+        employeeData.setBirthday(Birthday.getText().trim().isEmpty() ? employeeData.getBirthday() : Birthday.getText().trim());
+        employeeData.setSssNumber(SSS.getText().trim().isEmpty() ? employeeData.getSssNumber() : SSS.getText().trim());
+        employeeData.setPhilHealthNumber(PHILHEALTH.getText().trim().isEmpty() ? employeeData.getPhilHealthNumber() : PHILHEALTH.getText().trim());
+        employeeData.setTinNumber(TIN.getText().trim().isEmpty() ? employeeData.getTinNumber() : TIN.getText().trim());
+        employeeData.setPagIbigNumber(PAGIBIG.getText().trim().isEmpty() ? employeeData.getPagIbigNumber() : PAGIBIG.getText().trim());
+
+        // ✅ Handle numerical fields safely (avoids overwriting with 0.0)
+        employeeData.setBasicSalary(parseDouble(Salary.getText().trim(), employeeData.getBasicSalary()));
+        employeeData.setHourlyRate(parseDouble(Hourly.getText().trim(), employeeData.getHourlyRate()));
+        employeeData.setPhoneAllowance(parseDouble(PhoneAll.getText().trim(), employeeData.getPhoneAllowance()));
+        employeeData.setClothingAllowance(parseDouble(ClothAll.getText().trim(), employeeData.getClothingAllowance()));
+        employeeData.setRiceSubsidy(parseDouble(Rice.getText().trim(), employeeData.getRiceSubsidy()));
+
+
+        EmployeeFileHandler.updateEmployee(employeeData);
+        
         JOptionPane.showMessageDialog(this, "Employee record updated successfully!");
 
-        // ✅ Refresh employee table only if it is open
         if (EmployeeTable.getInstance() != null) {
             EmployeeTable.getInstance().refreshEmployeeTable();
         }
@@ -597,15 +586,16 @@ public class EditEmpInfo extends javax.swing.JFrame {
 }
 
 /**
- * Helper method to safely parse double values, defaulting to 0.0 if input is invalid.
+ * Helper method to safely parse double values, preserving the existing value if input is invalid or empty.
  */
-private double parseDouble(String value) {
+private double parseDouble(String value, double currentValue) {
     try {
-        return Double.parseDouble(value);
+        return value.trim().isEmpty() ? currentValue : Double.parseDouble(value.trim());
     } catch (NumberFormatException e) {
         System.err.println("ERROR: Invalid number format detected: " + value);
-        return 0.0;
-    }
+        return currentValue;  // ✅ Preserve the previous value if parsing fails
+    }  
+
     }//GEN-LAST:event_SaveActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

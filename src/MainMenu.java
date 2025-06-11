@@ -241,8 +241,18 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEmployeeActionPerformed
 
     private void jButtonPayslipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPayslipActionPerformed
-        // TODO add your handling code here:
-        fpayslip.show();
+        String input = JOptionPane.showInputDialog(
+        this,
+        "Enter Employee Number:",
+        "Generate Payslip",
+        JOptionPane.QUESTION_MESSAGE
+    );
+
+    if (input != null && !input.trim().isEmpty()) {
+        // You can now use input to look up the employee or pass it to your payslip generator
+        System.out.println("Employee Number entered: " + input);
+        // Optionally, validate or process here
+    }
         
     }//GEN-LAST:event_jButtonPayslipActionPerformed
 
@@ -262,8 +272,18 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonTimeoutActionPerformed
 
     private void jButtonAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAttendanceActionPerformed
-        // TODO add your handling code here:
-        fattendance.show();
+        String input = JOptionPane.showInputDialog(
+        this,
+        "Enter Employee Number:",
+        "Show Attendance",
+        JOptionPane.QUESTION_MESSAGE
+    );
+
+    if (input != null && !input.trim().isEmpty()) {
+        // You can now use input to look up the employee or pass it to your payslip generator
+        System.out.println("Employee Number entered: " + input);
+        // Optionally, validate or process here
+    }
     }//GEN-LAST:event_jButtonAttendanceActionPerformed
 
     /**

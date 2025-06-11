@@ -249,9 +249,16 @@ public class MainMenu extends javax.swing.JFrame {
     );
 
     if (input != null && !input.trim().isEmpty()) {
-        // You can now use input to look up the employee or pass it to your payslip generator
         System.out.println("Employee Number entered: " + input);
-        // Optionally, validate or process here
+
+        // 🔽 Launch Payslip window with the input
+        Payslip payslipWindow = new Payslip(input);  // This assumes Payslip has a constructor that accepts emp number
+        payslipWindow.setVisible(true);
+
+        // Optional: close the current window if needed
+        // this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(this, "Employee Number is required.", "Input Error", JOptionPane.WARNING_MESSAGE);
     }
         
     }//GEN-LAST:event_jButtonPayslipActionPerformed
@@ -280,9 +287,16 @@ public class MainMenu extends javax.swing.JFrame {
     );
 
     if (input != null && !input.trim().isEmpty()) {
-        // You can now use input to look up the employee or pass it to your payslip generator
         System.out.println("Employee Number entered: " + input);
-        // Optionally, validate or process here
+
+        // Launch Attendance window
+        Attendance attendanceWindow = new Attendance(input);  // Make sure Attendance has this constructor
+        attendanceWindow.setVisible(true);
+
+        // Optional: dispose current frame if needed
+        // this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(this, "Employee Number is required.", "Input Error", JOptionPane.WARNING_MESSAGE);
     }
     }//GEN-LAST:event_jButtonAttendanceActionPerformed
 

@@ -13,29 +13,36 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Attendance extends JFrame {
-   
+    public Attendance(String empNo) {
+    initComponents();
 
-   
+    DefaultTableModel model = (DefaultTableModel) jTableAttendance.getModel();
 
-    public Attendance() {
-        initComponents();
-        
-         DefaultTableModel model = (DefaultTableModel) jTableAttendance.getModel();
+    Object[][] sampleData = {
+        {"2025-05-19", "08:00 AM", "05:00 PM", "On Time", "None"},
+        {"2025-05-20", "08:15 AM", "05:00 PM", "Late", "Traffic"},
+        {"2025-05-21", "-", "-", "Absent", "Sick Leave"},
+        {"2025-05-22", "08:00 AM", "05:30 PM", "OT", "Finished project"},
+        {"2025-05-23", "08:00 AM", "05:00 PM", "On Time", "None"},
+        {"2025-05-24", "-", "-", "AWOL", "No call, no show"},
+        {"2025-05-25", "09:00 AM", "05:00 PM", "Late", "Overslept"}
+    };
 
-        Object[][] sampleData = {
-            {"2025-05-19", "08:00 AM", "05:00 PM", "On Time", "None"},
-            {"2025-05-20", "08:15 AM", "05:00 PM", "Late", "Traffic"},
-            {"2025-05-21", "-", "-", "Absent", "Sick Leave"},
-            {"2025-05-22", "08:00 AM", "05:30 PM", "OT", "Finished project"},
-            {"2025-05-23", "08:00 AM", "05:00 PM", "On Time", "None"},
-            {"2025-05-24", "-", "-", "AWOL", "No call, no show"},
-            {"2025-05-25", "09:00 AM", "05:00 PM", "Late", "Overslept"}
-        };
-        
-        for (Object[] row : sampleData) {
-            model.addRow(row);
-        }
+    for (Object[] row : sampleData) {
+        model.addRow(row);
     }
+
+    System.out.println("Displaying attendance for employee: " + empNo);
+}
+
+    
+    public Attendance() {
+    initComponents();
+}
+
+
+
+
     
 
 

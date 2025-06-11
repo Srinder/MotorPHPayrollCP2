@@ -12,14 +12,23 @@ import javax.swing.JOptionPane;
  */
 
 public class Payslip extends javax.swing.JFrame {
+    public Payslip(String empNo) {
+        initComponents();
+        loadEmployeePayslip(empNo);
+    }
 
-    /**
-     * Creates new form Payslip
-     */
+    // 👇 This allows creating Payslip with no parameters
     public Payslip() {
         initComponents();
-
     }
+
+    private void loadEmployeePayslip(String empNo) {
+        System.out.println("Loading payslip for: " + empNo);
+        // Optional: populate fields here
+    }
+
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -1,52 +1,52 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author singh
- */
-
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import java.util.List;
 
-
-
-
-
 public class Attendance extends JFrame {
-    private String empNo; 
+    private String empNo;
+
     public Attendance(String empNo) {
-    this.empNo = empNo;
-    initComponents();
-
-    DefaultTableModel model = (DefaultTableModel) jTableAttendance.getModel();
-
-  
-    System.out.println("Displaying attendance for employee: " + empNo);
-}
-
-    
-    public Attendance() {
-    initComponents();
-}
-
-public void loadAttendanceRecords(String empNo, LocalDate startDate, LocalDate endDate) {
-    DefaultTableModel model = (DefaultTableModel) jTableAttendance.getModel();
-    model.setRowCount(0); // Clear previous data before loading
-
-    List<String[]> records = AttendanceFileHandler.getAttendanceRecords(empNo, startDate, endDate);
-
-    for (String[] row : records) {
-        model.addRow(new Object[]{row[0], row[1], row[2]});
+        this.empNo = empNo;
+        initComponents();
+        loadEmployeeName(); // ✅ Load employee name
+        loadAttendanceRecords(empNo, LocalDate.now().minusMonths(1), LocalDate.now()); // ✅ Load last month's records
+        System.out.println("Displaying attendance for employee: " + empNo);
     }
 
-    System.out.println("Loaded attendance for Employee | Date Range: " + startDate + " to " + endDate);
-}
+    public Attendance() {
+        initComponents();
+    }
+
+    // ✅ Fetch and Display Employee Name in jLabel3
+    private void loadEmployeeName() {
+        String employeeName = getEmployeeName(empNo);
+        jLabel3.setText("Employee Name: " + employeeName); // ✅ Set name in GUI
+    }
+
+    // ✅ Retrieve Employee Name from Data Source
+    private String getEmployeeName(String empNo) {
+        return EmployeeFileHandler.getEmployee(Integer.parseInt(empNo))
+                .map(e -> e.getFirstName() + " " + e.getLastName())
+                .orElse("Unknown Employee"); // ✅ Handles invalid employee number
+    }
+
+    // ✅ Load Attendance Records into Table
+    public void loadAttendanceRecords(String empNo, LocalDate startDate, LocalDate endDate) {
+        DefaultTableModel model = (DefaultTableModel) jTableAttendance.getModel();
+        model.setRowCount(0); // ✅ Clear previous data
+
+        List<String[]> records = AttendanceFileHandler.getAttendanceRecords(empNo, startDate, endDate);
+
+        for (String[] row : records) {
+            model.addRow(new Object[]{row[0], row[1], row[2]});
+        }
+
+        System.out.println("Loaded attendance for Employee | Date Range: " + startDate + " to " + endDate);
+    }
+
+
 
 
 
@@ -139,12 +139,10 @@ public void loadAttendanceRecords(String empNo, LocalDate startDate, LocalDate e
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLblEmpAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)))
-                        .addGap(38, 38, 38)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)

@@ -1,26 +1,43 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import javax.swing.JOptionPane;
+import java.util.List;
 
 /**
- *
- * @author singh
+ * `AddEmployee` class provides a GUI for adding new employee records.
+ * Ensures that Employee Numbers auto-increment and prevents manual edits.
  */
-import javax.swing.JOptionPane;
-
 public class AddEmployee extends javax.swing.JFrame {
 
     /**
-     * Creates new form AddEmployee
+     * Constructor - Initializes the AddEmployee form.
+     * Automatically generates the next Employee Number and disables manual editing.
      */
     public AddEmployee() {
-        initComponents();
+        initComponents(); // Initialize UI components
+        generateNextEmpNum(); // Auto-set Employee Number
+
+        // Prevent manual entry in Employee Number field
+        jTxtEmpNum.setEditable(false);
+        jTxtEmpNum.setFocusable(false);
+        jTxtEmpNum.setBackground(java.awt.Color.LIGHT_GRAY);
     }
+
+    /**
+     * Generates the next available Employee Number automatically.
+     * Uses `EmployeeFileHandler` to retrieve existing employee records.
+     */
+    private void generateNextEmpNum() {
+    List<Employee> employees = EmployeeFileHandler.loadEmployees(); // Load latest employee data
+
+    // Find the next available Employee Number
+    int newEmpNum = employees.isEmpty() ? 10001 : employees.stream()
+                           .mapToInt(Employee::getEmployeeNumber)
+                           .max().orElse(10000) + 1;
+
+    System.out.println("Next Employee Number Generated: " + newEmpNum); // Debugging output
+    jTxtEmpNum.setText(String.valueOf(newEmpNum));
+    jTxtEmpNum.setEditable(false);
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -231,49 +248,70 @@ public class AddEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextSSSActionPerformed
 
     private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
-  // TODO add your handling code here:                                            
-    try {
-        // ✅ Collect employee details
-        String empNum = jTxtEmpNum.getText().trim();
+        try {
+        // Retrieve entered data, ensuring required fields are valid
+        int empNum = Integer.parseInt(jTxtEmpNum.getText().trim());
         String lastName = jTxtLastName.getText().trim();
         String firstName = jTxtFirstName.getText().trim();
         String phoneNumber = jTxtPhoneNumber.getText().trim();
-        String status = jTxtStatus.getText().trim();
-        String position = jTxtPosition.getText().trim();
-        String sss = jTextSSS.getText().trim();
-        String pagibig = jTextPAGIBIG.getText().trim();
-        String philhealth = jTextPHILHEALTH.getText().trim();
-        String tin = jTextTIN.getText().trim();
-        String supervisor = "NA"; // Adjust this for actual supervisor input
+        String status = jTxtStatus.getText().trim().isEmpty() ? "NA" : jTxtStatus.getText().trim();
+        String position = jTxtPosition.getText().trim().isEmpty() ? "NA" : jTxtPosition.getText().trim();
+        String supervisor = "NA"; // No supervisor input field, defaulting to "NA"
+        String address = "NA"; // Default placeholder for missing address
+        String birthday = "NA";
 
-        // ✅ Validate required fields
-        if (empNum.isEmpty() || lastName.isEmpty() || firstName.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Employee Number, Last Name, and First Name are required!", "Error", JOptionPane.ERROR_MESSAGE);
+        // Convert SSS, PAGIBIG, PHILHEALTH, TIN to integers, handling empty fields
+        int sssNumber = jTextSSS.getText().trim().isEmpty() ? 0 : Integer.parseInt(jTextSSS.getText().trim());
+        int philHealthNumber = jTextPHILHEALTH.getText().trim().isEmpty() ? 0 : Integer.parseInt(jTextPHILHEALTH.getText().trim());
+        int tinNumber = jTextTIN.getText().trim().isEmpty() ? 0 : Integer.parseInt(jTextTIN.getText().trim());
+        int pagIbigNumber = jTextPAGIBIG.getText().trim().isEmpty() ? 0 : Integer.parseInt(jTextPAGIBIG.getText().trim());
+
+        // Ensure required fields are not empty
+        if (lastName.isEmpty() || firstName.isEmpty() || phoneNumber.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Error: Last Name, First Name, and Phone Number are required!", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // ✅ Save Employee Data to CSV
-        FileWriter fw = new FileWriter("src/data/employee_info.csv", true);
-        BufferedWriter bw = new BufferedWriter(fw);
-        PrintWriter out = new PrintWriter(bw);
-        out.println(String.join(",", empNum, lastName, firstName, phoneNumber, status, position, supervisor, sss, pagibig, philhealth, tin));
-        out.close();
+        // Default placeholders for missing financial data
+        double basicSalary = 0.0;
+        double riceSubsidy = 0.0;
+        double phoneAllowance = 0.0;
+        double clothingAllowance = 0.0;
+        double grossSemiMonthlyRate = 0.0;
+        double hourlyRate = 0.0;
+        double withholdingTax = 0.0;
 
-        // ✅ Refresh EmployeeTable to instantly display new entry
+        // Create Employee object with corrected integer ID fields
+        Employee newEmployee = new Employee(empNum, lastName, firstName, phoneNumber, status, position, supervisor,
+    address, String.valueOf(sssNumber), String.valueOf(philHealthNumber), 
+    String.valueOf(tinNumber), String.valueOf(pagIbigNumber), 
+    basicSalary, riceSubsidy, phoneAllowance, clothingAllowance, 
+    grossSemiMonthlyRate, hourlyRate, withholdingTax, birthday); // Birthday MUST be last
+
+
+;
+
+
+        // Save employee record via EmployeeFileHandler
+        EmployeeFileHandler.saveEmployee(newEmployee);
+
+        JOptionPane.showMessageDialog(this, "Employee added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+        // Refresh Employee Number for next entry
+        generateNextEmpNum();
+
+        // Refresh the table view to reflect new entries
         if (EmployeeTable.getInstance() != null) {
-            EmployeeTable.getInstance().refreshEmployeeTable(); // ✅ Refresh JTable immediately
+            EmployeeTable.getInstance().refreshEmployeeTable(); 
         }
 
-        // ✅ Show confirmation
-        JOptionPane.showMessageDialog(this, "Employee added successfully!");
-
-        // ✅ Close AddEmployee window after submission
+        // Close the form after successful submission
         dispose();
 
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error adding employee. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Error: Invalid input! Ensure numeric values are entered correctly.", "Input Error", JOptionPane.ERROR_MESSAGE);
     }
+
     }//GEN-LAST:event_jButtonSubmitActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed

@@ -1,42 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author singh
- */
-
 import javax.swing.JFrame;
-import javax.swing.JTable;
+import java.time.ZoneId;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Attendance extends JFrame {
-   
+    private String empNo;
 
-   
+    public Attendance(String empNo) {
+        this.empNo = empNo;
+        initComponents();
+
+        // Set employee info in the GUI
+        jLabel6.setText("Emp ID: " + empNo);
+
+        // You'll need to get the employee name from your data source
+        // For now using placeholder - replace with actual lookup
+        jLabel3.setText("Name: " + employeeName);
+
+        // Set default date range (current month)
+        Calendar cal = Calendar.getInstance();
+        startDateLabel.setDate(cal.getTime());
+        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+        endDateLabel.setDate(cal.getTime());
+    }
 
     public Attendance() {
         initComponents();
-        
-         DefaultTableModel model = (DefaultTableModel) jTableAttendance.getModel();
-
-        Object[][] sampleData = {
-            {"2025-05-19", "08:00 AM", "05:00 PM", "On Time", "None"},
-            {"2025-05-20", "08:15 AM", "05:00 PM", "Late", "Traffic"},
-            {"2025-05-21", "-", "-", "Absent", "Sick Leave"},
-            {"2025-05-22", "08:00 AM", "05:30 PM", "OT", "Finished project"},
-            {"2025-05-23", "08:00 AM", "05:00 PM", "On Time", "None"},
-            {"2025-05-24", "-", "-", "AWOL", "No call, no show"},
-            {"2025-05-25", "09:00 AM", "05:00 PM", "Late", "Overslept"}
-        };
-        
-        for (Object[] row : sampleData) {
-            model.addRow(row);
-        }
     }
-    
+
+
 
 
     /**
@@ -57,6 +49,12 @@ public class Attendance extends JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        startDateLabel = new com.toedter.calendar.JDateChooser();
+        endDateLabel = new com.toedter.calendar.JDateChooser();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        checkAttendanceButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -74,10 +72,11 @@ public class Attendance extends JFrame {
         ));
         jScrollPane1.setViewportView(jTableAttendance);
 
-        jLblEmpAtt.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLblEmpAtt.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLblEmpAtt.setForeground(new java.awt.Color(255, 255, 255));
         jLblEmpAtt.setText("Employee Attendance");
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Select Date Range:");
 
@@ -90,51 +89,93 @@ public class Attendance extends JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Name : Garcia, Manuel III");
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("From");
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("To");
+
+        checkAttendanceButton.setBackground(new java.awt.Color(0, 102, 102));
+        checkAttendanceButton.setForeground(new java.awt.Color(255, 255, 255));
+        checkAttendanceButton.setText("Check Attendance");
+        checkAttendanceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkAttendanceButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Emp ID : ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(49, 49, 49)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(56, 56, 56)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(203, 203, 203)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLblEmpAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(49, 49, 49)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(90, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                            .addComponent(jLblEmpAtt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE))
+                        .addGap(61, 61, 61)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(startDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(endDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(checkAttendanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18))
+                    .addComponent(jScrollPane1))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLblEmpAtt, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1))
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                    .addComponent(jLabel1)
+                    .addComponent(jLblEmpAtt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkAttendanceButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(endDateLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel3))
+                            .addComponent(startDateLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addGap(8, 8, 8)))
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(jButton1)
-                .addGap(62, 62, 62))
+                .addGap(46, 46, 46))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,6 +190,94 @@ public class Attendance extends JFrame {
         dispose ();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void checkAttendanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAttendanceButtonActionPerformed
+        try {
+            // 1. Validate date selection
+            if (startDateLabel.getDate() == null || endDateLabel.getDate() == null) {
+                JOptionPane.showMessageDialog(this, "Please select both start and end dates",
+                        "Date Range Required", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // 2. Convert dates to LocalDate
+            LocalDate startDate = startDateLabel.getDate()
+                    .toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+
+            LocalDate endDate = endDateLabel.getDate()
+                    .toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+
+            // 3. Validate date range
+            if (startDate.isAfter(endDate)) {
+                JOptionPane.showMessageDialog(this, "End date must be after start date",
+                        "Invalid Date Range", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // 4. Load attendance data
+            AttendanceFileHandler handler = new AttendanceFileHandler(this.empNo);
+            List<AttendanceFileHandler.AttendanceRecord> records = handler.getFilteredRecords(startDate, endDate);
+
+            // 5. Update the table
+            DefaultTableModel model = (DefaultTableModel) jTableAttendance.getModel();
+            model.setRowCount(0); // Clear existing data
+
+            if (records.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No attendance records found for the selected period",
+                        "No Data", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                for (AttendanceFileHandler.AttendanceRecord record : records) {
+                    model.addRow(new Object[]{
+                        record.date.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")),
+                        record.timeIn.format(DateTimeFormatter.ofPattern("hh:mm a")),
+                        record.timeOut.format(DateTimeFormatter.ofPattern("hh:mm a")),
+                        calculateStatus(record.timeIn),
+                        calculateRemarks(record.timeIn, record.timeOut)
+                    });
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error loading attendance data:\n" + ex.getMessage(),
+                    "System Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+    }
+
+// Helper methods
+    private String calculateStatus(LocalTime timeIn) {
+        LocalTime lateThreshold = LocalTime.of(9, 15); // 9:15 AM cutoff
+        return timeIn.isAfter(lateThreshold) ? "Late" : "On Time";
+    }
+
+    private String calculateRemarks(LocalTime timeIn, LocalTime timeOut) {
+        Duration workDuration = Duration.between(timeIn, timeOut);
+        long hours = workDuration.toHours();
+        long minutes = workDuration.toMinutesPart();
+
+        if (hours < 8) {
+            return String.format("Short by %dh %dm", 8 - hours, minutes);
+        }
+        return "Complete";
+    }
+
+// Update constructor to initialize employee data
+    public Attendance(String empNo, String fullName) {
+        this.empNo = empNo;
+        initComponents();
+        jLabel3.setText("Name: " + fullName);
+        jLabel6.setText("Emp ID: " + empNo);
+
+        // Set default date range (current month)
+        Calendar cal = Calendar.getInstance();
+        startDateLabel.setDate(cal.getTime());
+        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+        endDateLabel.setDate(cal.getTime());
+        }
+    }//GEN-LAST:event_checkAttendanceButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -158,42 +287,27 @@ public class Attendance extends JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Attendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Attendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Attendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Attendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Attendance().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Attendance().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton checkAttendanceButton;
+    private com.toedter.calendar.JDateChooser endDateLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLblEmpAtt;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAttendance;
+    private com.toedter.calendar.JDateChooser startDateLabel;
     // End of variables declaration//GEN-END:variables
-
-}

@@ -1,107 +1,156 @@
-import javax.swing.JFrame;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.Vector;
-import com.opencsv.CSVReader;
-import java.util.Arrays;
-import java.io.IOException;
-import javax.swing.JOptionPane; 
-import java.io.File;           
-import java.io.BufferedWriter;  
-import java.io.FileWriter;    
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+// Required imports for managing employee data, file operations, and UI functionality.
+import java.util.List;  // Enables handling of multiple employee records.
+import javax.swing.JTable;  // Enables tabular display of employee records.
+import javax.swing.table.DefaultTableModel;  // Manages the data structure of the JTable.
+import javax.swing.table.DefaultTableCellRenderer;  // Controls the visual appearance of table cells.
+import javax.swing.SwingUtilities;  // Ensures smooth UI rendering.
+import javax.swing.JOptionPane;  // Displays pop-up error messages for user feedback.
+import java.util.Vector;  // Facilitates structured data handling.
+import java.util.Arrays;  // Provides array-based utilities.
 
 /**
- *
- * @author singh
+ * `EmployeeTable` class displays and manages employee records in a table format.
+ * Supports real-time updates and structured data retrieval from a CSV file.
  */
 public class EmployeeTable extends javax.swing.JFrame {
-    AddEmployee addemp = new AddEmployee();
-    ViewEmpInfo viewinfo = new ViewEmpInfo();
-    EditEmpInfo editinfo = new EditEmpInfo();
+    private String selectedEmpNum;  // Stores the Employee Number selected in the table.
 
-    private static EmployeeTable instance; // ✅ Track the active instance
+    // Instances for handling employee-related actions.
+    AddEmployee addemp = new AddEmployee();  // Instance for adding new employees.
+    ViewEmpInfo viewinfo = new ViewEmpInfo();  // Instance for viewing employee details.
+
+    // Tracks the active instance of the Employee Table for easy access.
+    public static EmployeeTable instance;
 
     /**
-     * Creates new form EmployeeTable
+     * Constructor - Creates and initializes the EmployeeTable UI.
+     * Configures table settings and loads employee records.
      */
     public EmployeeTable() {
-        instance = this; // ✅ Store the active instance
-        initComponents();
-        
-        DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
-        
-        model = new DefaultTableModel(model.getDataVector(), new Vector<>(Arrays.asList("Employee Number", "Last Name", "First Name", "Phone Number", "Status", "Position", "Immediate Supervisor"))) {
+        instance = this;  // Stores the active instance of EmployeeTable.
+        initComponents();  // Initializes UI components.
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);  // Allows proper window closure.
+
+        // Reset instance when window is closed
+        addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                instance = null;
             }
-        };
-        
-        jTableEmpTable.setModel(model);
-        loadEmployeeData();
-        adjustTableSettings();
+        });
+
+        configureTableModel();  // Sets up table columns.
+        loadEmployeeData();  // Loads employee records from CSV.
+        adjustTableSettings();  // Enhances table formatting for readability.
     }
 
-    // ✅ Public method to get the active table instance
+    /**
+     * Provides access to the active instance of EmployeeTable.
+     * Allows other components to trigger table refresh actions.
+     *
+     * @return The active EmployeeTable instance.
+     */
     public static EmployeeTable getInstance() {
         return instance;
     }
 
-    private void loadEmployeeData() {
-        DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
-        model.setRowCount(0);
-
-        try {
-            CSVReader reader = new CSVReader(new FileReader("src/data/employee_info.csv"));
-            String[] row;
-            boolean skipHeader = true;
-
-            while ((row = reader.readNext()) != null) {
-                if (skipHeader) {
-                    skipHeader = false;
-                    continue; // Skip header row
-                }
-                String supervisorFullName = row[6].trim();
-                model.addRow(row);
+    /**
+     * Configures the table model with predefined column headers.
+     * Ensures proper column structure without including Birthday.
+     */
+    private void configureTableModel() {
+        DefaultTableModel model = new DefaultTableModel(
+            new Vector<>(Arrays.asList(
+                "Employee Number", "Last Name", "First Name", "Phone Number", "Status", "Position", "Immediate Supervisor"  // Excluding Birthday
+            )),
+            0
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;  // Prevent direct editing of table cells.
             }
-            reader.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        jTableEmpTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        jTableEmpTable.getColumnModel().getColumn(6).setPreferredWidth(280);
-        jTableEmpTable.getTableHeader().setResizingAllowed(true);
+        };
 
-        // ✅ Adjust cell renderer to align text properly
-        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-        renderer.setHorizontalAlignment(DefaultTableCellRenderer.LEFT);
-        jTableEmpTable.getColumnModel().getColumn(6).setCellRenderer(renderer);
+        jTableEmpTable.setModel(model);
     }
 
+    /**
+     * Loads employee data from the CSV file and populates the table dynamically.
+     */
+    private void loadEmployeeData() {
+    DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
+    model.setRowCount(0);  // ✅ Clears old table data before reloading
+
+    List<Employee> employees = EmployeeFileHandler.loadEmployees();  // ✅ Load employees from CSV
+
+    if (employees == null || employees.isEmpty()) {  // ✅ Avoid NullPointerException
+        System.out.println("No employees found! Check CSV formatting or reload process.");
+        JOptionPane.showMessageDialog(this, "Error: Employee data failed to load!", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+        for (Employee emp : employees) {
+            model.addRow(new Object[]{ 
+                emp.getEmployeeNumber(), emp.getLastName(), emp.getFirstName(), 
+                emp.getPhoneNumber(),  // ✅ Use raw CSV data without extra formatting
+                emp.getStatus(), emp.getPosition(), emp.getSupervisor()  
+            });
+        }
+    }
+}
+
+    
+    private String formatIDLive(String input) {
+    StringBuilder formatted = new StringBuilder();
+    for (int i = 0; i < input.length(); i++) {  // ✅ Fix loop declaration
+        formatted.append(input.charAt(i));
+        if ((i + 1) % 3 == 0 && i + 1 < input.length()) {  // ✅ Ensure condition is correctly formed
+            formatted.append("-");
+        }
+    }
+    return formatted.toString();
+}
+
+
+
+
+    /**
+     * Refreshes the EmployeeTable dynamically to reflect the latest employee records.
+     * Clears and reloads table data to maintain accuracy.
+     */
     public void refreshEmployeeTable() {
-        if (instance != null) { // ✅ Ensure active window exists
-            DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
-            model.setRowCount(0); // ✅ Clear current rows
-            loadEmployeeData();   // ✅ Reload fresh data from CSV
+    if (instance != null) {
+        DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
+        model.setRowCount(0);  // ✅ Clears previous records to prevent duplication
+
+        List<Employee> employees = EmployeeFileHandler.loadEmployees();  // ✅ Reload fresh employee data
+
+        if (employees.isEmpty()) {
+            System.err.println("WARNING: Employee list is empty after refresh!");
+        } else {
+            System.out.println("Employee list successfully refreshed. Total employees: " + employees.size());
+        }
+
+        for (Employee emp : employees) {
+            model.addRow(new Object[]{ 
+                emp.getEmployeeNumber(), emp.getLastName(), emp.getFirstName(), 
+                emp.getPhoneNumber(), emp.getStatus(), emp.getPosition(), emp.getSupervisor()
+            });
         }
     }
+}
 
-    // ✅ Table Formatting
+
+    /**
+     * Adjusts table settings, including column width and text alignment.
+     * Ensures proper readability of employee records for users.
+     */
     private void adjustTableSettings() {
-        jTableEmpTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        jTableEmpTable.getColumnModel().getColumn(6).setPreferredWidth(300); // ✅ Adjust column width
+        jTableEmpTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);  // Prevents auto-resizing for better alignment.
+        jTableEmpTable.getColumnModel().getColumn(6).setPreferredWidth(300);  // Expands Immediate Supervisor column.
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-        renderer.setHorizontalAlignment(DefaultTableCellRenderer.LEFT);
-        jTableEmpTable.getColumnModel().getColumn(6).setCellRenderer(renderer);
+        renderer.setHorizontalAlignment(DefaultTableCellRenderer.LEFT);  // Aligns text to the left.
+        jTableEmpTable.getColumnModel().getColumn(6).setCellRenderer(renderer);  // Applies text alignment settings.
     }
 
 
@@ -264,68 +313,74 @@ public class EmployeeTable extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewActionPerformed
-        // TODO add your handling code here:
-        viewinfo.show();
+    int selectedRow = jTableEmpTable.getSelectedRow(); // Get selected row index
+
+    if (selectedRow != -1) { // Ensure a row is selected before proceeding
+        try {
+            int empNum = Integer.parseInt(jTableEmpTable.getValueAt(selectedRow, 0).toString().trim()); // Retrieve Employee Number
+            EditEmpInfo editEmpInfoWindow = new EditEmpInfo(empNum, true); // Open EditEmpInfo in read-only mode
+            editEmpInfoWindow.setVisible(true);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error: Invalid Employee Number format!", "Data Error", JOptionPane.ERROR_MESSAGE);
+            System.err.println("ERROR: Failed to parse Employee Number - " + e.getMessage());
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Please select an employee to view!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButtonViewActionPerformed
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        // TODO add your handling code here:
-        editinfo.show();
-    }//GEN-LAST:event_jButtonUpdateActionPerformed
+    int selectedRow = jTableEmpTable.getSelectedRow(); // Get the selected row index
 
-    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = jTableEmpTable.getSelectedRow();
-
-    if (selectedRow == -1) {
-        JOptionPane.showMessageDialog(this, "Please select an employee to delete.", "Error", JOptionPane.ERROR_MESSAGE);
+    if (selectedRow == -1) { // Ensure a row is selected before proceeding
+        JOptionPane.showMessageDialog(this, "Please select an employee to update!", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
+    // Retrieve Employee Number safely
+    String empNumStr = jTableEmpTable.getValueAt(selectedRow, 0).toString().trim();
+    try {
+        int empNum = Integer.parseInt(empNumStr);
+
+        // Open the Edit Employee window in Editable Mode
+        SwingUtilities.invokeLater(() -> {
+            EditEmpInfo editWindow = new EditEmpInfo(empNum, false);  
+            editWindow.setVisible(true);
+        });
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Error: Invalid Employee Number format!", "Data Error", JOptionPane.ERROR_MESSAGE);
+        System.err.println("ERROR: Failed to parse Employee Number - " + e.getMessage());
+    }
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+    // Handles the deletion of an employee when the "Delete" button is clicked
+
+    int selectedRow = jTableEmpTable.getSelectedRow(); // Get the selected row index
+
+    if (selectedRow == -1) { // Ensure a row is selected before proceeding
+        JOptionPane.showMessageDialog(this, "Please select an employee to delete.", "Error", JOptionPane.ERROR_MESSAGE);
+        return; // Stop execution if no row is selected
+    }
+
+    // Ask for confirmation before deleting the employee
     int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this employee?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
     if (confirm != JOptionPane.YES_OPTION) {
-        return; // Cancel deletion
+        return; // Cancel deletion if the user selects "No"
     }
 
-    // ✅ Get Employee Number of Selected Row
-    String empNumToDelete = jTableEmpTable.getValueAt(selectedRow, 0).toString();
+    // Retrieve Employee Number of the selected row
+    int empNumToDelete = Integer.parseInt(jTableEmpTable.getValueAt(selectedRow, 0).toString());
 
-    // ✅ Remove Employee from JTable
+    // Call EmployeeFileHandler to remove employee from CSV
+    EmployeeFileHandler.deleteEmployee(empNumToDelete);
+
+    // Remove employee from JTable visually
     DefaultTableModel model = (DefaultTableModel) jTableEmpTable.getModel();
-    model.removeRow(selectedRow);
+    model.removeRow(selectedRow); // Delete row from table view
 
-    // ✅ Update CSV File by Removing the Deleted Employee
-    try {
-        File inputFile = new File("src/data/employee_info.csv");
-        File tempFile = new File("src/data/temp_employee_info.csv");
-
-        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-
-        String line;
-        boolean skipHeader = true;
-        while ((line = reader.readLine()) != null) {
-            if (skipHeader) {
-                writer.write(line + "\n"); // Keep header row
-                skipHeader = false;
-                continue;
-            }
-            if (!line.startsWith(empNumToDelete + ",")) {
-                writer.write(line + "\n"); // Keep non-deleted rows
-            }
-        }
-
-        reader.close();
-        writer.close();
-
-        // ✅ Replace old file with updated file
-        inputFile.delete();
-        tempFile.renameTo(inputFile);
-    } catch (IOException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error deleting employee.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
+    // Notify the user that deletion was successful
     JOptionPane.showMessageDialog(this, "Employee deleted successfully!");
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
